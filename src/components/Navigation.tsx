@@ -1,7 +1,7 @@
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaQuestionCircle, FaLock, FaSignInAlt, FaSignOutAlt} from 'react-icons/fa';
+import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaQuestionCircle} from 'react-icons/fa';
 
 
 const NavigationWrapper = styled.nav`
