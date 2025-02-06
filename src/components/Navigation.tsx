@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {  Link } from 'react-router-dom';
-import { TokenContext,  } from '../pages/Authentication/TokenContext';
 import styled from 'styled-components';
-// import LoginDropdown from '../pages/Authentication/LoginDropdown';
-// import Login from '../pages/Authentication/Login';
 import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaQuestionCircle, FaLock, FaSignInAlt, FaSignOutAlt} from 'react-icons/fa';
 
 
@@ -57,8 +54,6 @@ const IconTextWrapper = styled.div`
 `;
 
 const Navigation: React.FC = () => {
-  const { token, logout } = useContext(TokenContext)!;
-
   return (
     <NavigationWrapper>
       <NavigationContent>
@@ -106,37 +101,6 @@ const Navigation: React.FC = () => {
                 </IconTextWrapper>
               </NavLink>
             </li>
-            <li>
-              {token && (
-                <NavLink to="/protected">
-                  <IconTextWrapper>
-                  <FaLock />
-                  <span>Protected</span>
-                  </IconTextWrapper>
-                </NavLink>
-              )}
-            </li>
-            <li>
-              {token ? (
-                
-                    <NavLink to="/login" onClick={logout}>
-                      <IconTextWrapper>
-                    <FaSignOutAlt />
-                    <span>Logout</span>
-                    </IconTextWrapper>
-                    </NavLink>
-
-                ) : (
-                  
-                  <NavLink to="/login">
-                    <IconTextWrapper>
-                    <FaSignInAlt />
-                    <span>Login</span>
-                    </IconTextWrapper>
-                  </NavLink>
-                )}
-            </li>
-
           </NavLinks>
           
       </NavigationContent>
