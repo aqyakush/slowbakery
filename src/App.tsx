@@ -27,7 +27,7 @@ const App: React.FC = () => {
           <Main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="*" element={<Navigate to="/not-protected" />} />
+              <Route path="*" element={<Home />} />
               <Route path="/preorder" element={<Preorder />} />
               <Route path="/subscription" element={<Subscription />} />
               <Route path="/faq" element={<FAQ />} />

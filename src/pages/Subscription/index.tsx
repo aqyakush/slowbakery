@@ -98,8 +98,28 @@ export default function Subscription() {
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = (data: any) => {
+    // Handle form submission
     console.log(data);
     setSubmitted(true);
+
+    // Example: Send data to Google Forms
+    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSccCeCBJiKT46qlXp3PVdaXn6wTzGL4WEdJVX1XTSFg7gO7ZQ/formResponse';
+    const formData = new FormData();
+    formData.append('entry.2046355118', data.name);
+    formData.append('entry.1678340185', data.email);
+    formData.append('entry.548497100', data.phone);
+    formData.append('entry.1712509764', data.address);
+    formData.append('entry.6677889900', data.dietaryRestrictions);
+
+    fetch(formUrl, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors',
+    }).then(() => {
+      console.log('Form submitted');
+    }).catch((error) => {
+      console.error('Error submitting form:', error);
+    });
   };
 
   return (
