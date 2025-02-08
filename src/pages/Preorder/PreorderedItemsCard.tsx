@@ -45,7 +45,7 @@ const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
   const navigate = useNavigate();
 
   const handleCreateOrder = () => {
-    navigate('/preorder/create-order', { state: { items } });
+    navigate('/slowbakery/preorder/create-order', { state: { items } });
   };
 
   return (

@@ -28,12 +28,12 @@ const App: React.FC = () => {
           <Navigation />
           <Main>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/preorder" element={<Preorder />} />
-              <Route path="/preorder/create-order" element={<CreateOrder />} />
-              <Route path="/subscription" element={<Subscription />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/our-story" element={<OurStory />} />
+              <Route path="/slowbakery/" element={<Home />} />
+              <Route path="/slowbakery/preorder" element={<Preorder />} />
+              <Route path="/slowbakery/preorder/create-order" element={<CreateOrder />} />
+              <Route path="/slowbakery/subscription" element={<Subscription />} />
+              <Route path="/slowbakery/faq" element={<FAQ />} />
+              <Route path="/slowbakery/our-story" element={<OurStory />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Main>
