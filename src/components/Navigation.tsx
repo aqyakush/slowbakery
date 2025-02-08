@@ -57,12 +57,12 @@ const Navigation: React.FC = () => {
   return (
     <NavigationWrapper>
       <NavigationContent>
-          <Logo to="/slowbakery">
+          <Logo to="/">
             <LogoText>Slow Bakery</LogoText>
           </Logo>
           <NavLinks>
             <li>
-              <NavLink to="/slowbakery">
+              <NavLink to="/">
               <IconTextWrapper>
                 <FaHome />
                 <span>Home</span>
@@ -70,7 +70,7 @@ const Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/slowbakery/our-story">
+              <NavLink to="/our-story">
               <IconTextWrapper>
                 <FaBookOpen />
                 <span>Our Story</span>
@@ -78,7 +78,7 @@ const Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/slowbakery/preorder">
+              <NavLink to="/preorder">
               <IconTextWrapper>
                 <FaBoxOpen />
                 <span>Preorder</span>
@@ -86,7 +86,7 @@ const Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/slowbakery/subscription">
+              <NavLink to="/subscription">
               <IconTextWrapper>
                 <FaBell />
                 <span>Subscription</span>
@@ -94,7 +94,7 @@ const Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/slowbakery/faq">
+              <NavLink to="/faq">
               <IconTextWrapper>
                 <FaQuestionCircle />
                 <span>FAQ</span>
