@@ -28,7 +28,7 @@ const App: React.FC = () => {
           <Navigation />
           <Main>
             <Routes>
-              <Route path="/slowbakery/" element={<Home />} />
+              <Route path="/slowbakery" element={<Home />} />
               <Route path="/slowbakery/preorder" element={<Preorder />} />
               <Route path="/slowbakery/preorder/create-order" element={<CreateOrder />} />
               <Route path="/slowbakery/subscription" element={<Subscription />} />
