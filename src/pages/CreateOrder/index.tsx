@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import { PageWrapper, Title, Content } from '../../components/StyledComponets';
