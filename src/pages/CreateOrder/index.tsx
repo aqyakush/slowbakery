@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import { Content, PageWrapper, Title } from '../../components/StyledComponets';
+import { PageWrapper, Title, Content } from '../../components/StyledComponets';
 import { Form, FormSection, Input, Label, SubmitButton } from '../../components/Form';
+import { ThankYouCard, ThankYouText } from '../../components/Card';
 
 interface FormData {
   email: string;
@@ -13,6 +14,9 @@ const CreateOrder = () => {
   const location = useLocation();
   const { items } = location.state as { items: string[] } || { items: [] };
   const { register, handleSubmit } = useForm<FormData>();
+  const [submitted, setSubmitted] = React.useState(() => {
+    return localStorage.getItem('submitted') === 'true';
+  });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const formUrl = 'https://docs.google.com/forms/d/1PfSTT692aHNyLe_F9tPLU8p6c_hE6jaTJhorWyXElQ4/formResponse';
@@ -23,40 +27,46 @@ const CreateOrder = () => {
     if (data.items['Sunflower and Sesame Bread']) formData.append('entry.824005279', 'Sunflower and Sesame Bread');
     if (data.items['Olive Bread']) formData.append('entry.1490827537', 'Olive Bread');
 
-    console.log('Submitting form:', data);
-    console.log('Form data:', formData);
-
     fetch(formUrl, {
       method: 'POST',
       body: formData,
       mode: 'no-cors',
     }).then(() => {
       console.log('Form submitted');
+      setSubmitted(true);
     }).catch((error) => {
       console.error('Error submitting form:', error);
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem('submitted', submitted.toString());
+  }, [submitted]);
 
   return (
     <PageWrapper>
       <Title>Create Order</Title>
       <Content>
         <FormSection>
+          {submitted ? (
+            <ThankYouCard>
+              <ThankYouText>Thank you for your order! We will contact you shortly.</ThankYouText>
+            </ThankYouCard>
+          ) : (
             <Form onSubmit={handleSubmit(onSubmit)}>
-            <Label>Items to be ordered</Label>
-            <ul>
-                {items.map((item) => (
-                <li key={item}>
-                    {item}
-                    <Input type="hidden" {...register(`items.${item}`)} value={item} />
+                <ul>
+              {items.map((item) => (
+                <li>
+                {item}
+                  <Input type="hidden" {...register(`items.${item}`)} value={item} />
                 </li>
-                ))}
-            </ul>
-            
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" {...register('email')} type="email" placeholder="Email" required />
-            <SubmitButton type="submit">Submit Order</SubmitButton>
+              ))}
+              </ul>
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" {...register('email')} type="email" placeholder="Email" required />
+              <SubmitButton type="submit">Submit Order</SubmitButton>
             </Form>
+          )}
         </FormSection>
       </Content>
     </PageWrapper>

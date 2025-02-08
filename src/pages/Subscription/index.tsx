@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
 import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
+import { ThankYouCard, ThankYouText } from '../../components/Card';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -25,20 +26,6 @@ const TextWrapper = styled.div`
 
 const CenteredParagraph = styled.p`
   text-align: center;
-`;
-
-const ThankYouCard = styled.div`
-  background-color: #FEE995;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
-const ThankYouText = styled.p`
-  font-weight: bold;
-  color: #92400e;
 `;
 
 
