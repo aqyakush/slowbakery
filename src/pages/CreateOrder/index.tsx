@@ -14,9 +14,7 @@ const CreateOrder = () => {
   const location = useLocation();
   const { items } = location.state as { items: string[] } || { items: [] };
   const { register, handleSubmit } = useForm<FormData>();
-  const [submitted, setSubmitted] = React.useState(() => {
-    return localStorage.getItem('submitted') === 'true';
-  });
+  const [submitted, setSubmitted] = React.useState(false);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const formUrl = 'https://docs.google.com/forms/d/1PfSTT692aHNyLe_F9tPLU8p6c_hE6jaTJhorWyXElQ4/formResponse';
@@ -38,10 +36,6 @@ const CreateOrder = () => {
       console.error('Error submitting form:', error);
     });
   };
-
-  useEffect(() => {
-    localStorage.setItem('submitted', submitted.toString());
-  }, [submitted]);
 
   return (
     <PageWrapper>
