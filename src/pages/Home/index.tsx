@@ -1,12 +1,8 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-
-const PageWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-`
+import { PageWrapper } from "../../components/StyledComponets"
+import { Card, CardButton, CardWrapper } from "../../components/Card";
 
 const Section = styled.div`
   display: flex;
@@ -29,35 +25,6 @@ const SectionTitle = styled.h2`
   color: #92400e;
   margin-bottom: 1rem;
 `
-
-const CardWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-`;
-
-const Card = styled.div`
-  background-color: #FEE995;
-  border-radius: 10px;
-  padding: 20px;
-  flex: 1;
-  margin: 0 10px;
-  text-align: left;
-`;
-
-const CardButton = styled.button`
-  background-color: #92400e;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: #b45309;
-  }
-`;
 
 export default function Home() {
   const navigate = useNavigate();

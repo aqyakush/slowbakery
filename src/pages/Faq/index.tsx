@@ -1,22 +1,5 @@
 import styled from "styled-components"
-
-const PageWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-`
-
-const Title = styled.h1`
-  font-size: 2.5rem;
-  color: #92400e;
-  margin-bottom: 1rem;
-`
-
-const Content = styled.div`
-  font-size: 1.1rem;
-  color: #4b5563;
-  line-height: 1.6;
-`
+import { PageWrapper, Title, Content } from "../../components/StyledComponets"
 
 const Question = styled.h2`
   font-size: 1.5rem;

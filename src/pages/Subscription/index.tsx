@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
 import { useForm } from 'react-hook-form';
+import { Button } from '../../components/StyledComponets';
 
 const PageWrapper = styled.div`
   max-width: 1200px;
@@ -43,7 +44,7 @@ const FormWrapper = styled.div`
 const Label = styled.label`
   margin-top: 10px;
   margin-bottom: 1px;
-  color: #92400e; /* Better color for the label */
+  color: #92400e;
 `;
 
 const Input = styled.input`
@@ -58,20 +59,9 @@ const TextArea = styled.textarea`
   border-radius: 5px;
 `;
 
-const SubmitButton = styled.button`
-  background-color: #92400e;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 10px;
-  width: fit-content; /* Make the button smaller */
-  align-self: center; /* Center the button */
-
-  &:hover {
-    background-color: #b45309;
-  }
+const SubmitButton = styled(Button)`
+  width: fit-content; 
+  align-self: center;
 `;
 
 const CenteredParagraph = styled.p`
