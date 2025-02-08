@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
 import { useForm } from 'react-hook-form';
-import { Button, PageWrapper } from '../../components/StyledComponets';
+import { PageWrapper } from '../../components/StyledComponets';
+import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -20,43 +21,6 @@ const ImageWrapper = styled.div`
 const TextWrapper = styled.div`
   flex: 1;
   padding-left: 20px;
-`;
-
-const FormSection = styled.section`
-  margin-bottom: 1rem;  
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const FormWrapper = styled.div`
-  min-height: 600px; /* Adjust this value based on the form's height */
-  `;
-
-const Label = styled.label`
-  margin-top: 10px;
-  margin-bottom: 1px;
-  color: #92400e;
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const TextArea = styled.textarea`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const SubmitButton = styled(Button)`
-  width: fit-content; 
-  align-self: center;
 `;
 
 const CenteredParagraph = styled.p`

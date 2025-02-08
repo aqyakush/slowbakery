@@ -8,6 +8,7 @@ import FAQ from './pages/Faq';
 import Subscription from './pages/Subscription';
 import OurStory from './pages/OurStory';
 import Preorder from './pages/Preorder';
+import CreateOrder from './pages/CreateOrder';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -29,9 +30,11 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="*" element={<Home />} />
               <Route path="/preorder" element={<Preorder />} />
+              <Route path="/preorder/create-order" element={<CreateOrder />} />
               <Route path="/subscription" element={<Subscription />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/our-story" element={<OurStory />} />
+              
             </Routes>
           </Main>
           <Footer />
