@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
 import { useForm } from 'react-hook-form';
-import { Button } from '../../components/StyledComponets';
-
-const PageWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-`
+import { Button, PageWrapper } from '../../components/StyledComponets';
 
 const Title = styled.h1`
   font-size: 2.5rem;
