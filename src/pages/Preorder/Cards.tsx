@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -79,7 +80,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, image, description, ingredients, price, preordered, onPreorder }) => {
-  const [quantity, setQuantity] = useState(1);
+  const { items } = useShoppingCart();
+  const [quantity, setQuantity] = useState(items.find((item) => item.name === title)?.quantity || 1);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuantity = Number(e.target.value);

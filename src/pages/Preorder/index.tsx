@@ -71,7 +71,7 @@ export default function Preorder() {
             onPreorder={(quantity: number) => handlePreorder(item.title, item.price, quantity)}
           />
         ))}
-          {items.length > 0 && <PreorderedItemsCard items={items} />}
+          {items.length > 0 && <PreorderedItemsCard/>}
       </Content>
     </PageWrapper>
   );

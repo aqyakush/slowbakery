@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { PreorderedItem } from './index';
 import { NavLink } from 'react-router-dom';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 
 const PreorderedCardWrapper = styled(motion.div)`
@@ -59,11 +59,8 @@ const ShoppingCardLink = styled(NavLink)`
   text-align: center;
 `;
 
-interface PreorderedItemsCardProps {
-  items: PreorderedItem[];
-}
-
-const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
+const PreorderedItemsCard: React.FC = () => {
+  const { items } = useShoppingCart();
   const itemsText = items.map((item) => {
     const totalPrice = (item.price * item.quantity).toFixed(2);
     return (
