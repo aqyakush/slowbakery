@@ -2,6 +2,7 @@ import React from 'react';
 import { Content, PageWrapper, Title } from '../../components/StyledComponets';
 import Card from './Cards';
 import PreorderedItemsCard from './PreorderedItemsCard';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 interface BreadItem {
   title: string;
@@ -42,19 +43,15 @@ export type PreorderedItem = {
 }
 
 export default function Preorder() {
-  const [preorderedItems, setPreorderedItems] = React.useState<PreorderedItem[]>([]);
+  const { items, addItem, removeItem } = useShoppingCart();
 
   const handlePreorder = (name: string, price: number, quantity: number) => {
-    setPreorderedItems((prevItems) =>{
-      const existingItem = prevItems.find((item) => item.name === name);
-      if (existingItem) {
-        // Remove the item if it exists
-        return prevItems.filter((item) => item.name !== name);
-      } else {
-        // Add the item if it does not exist
-        return [...prevItems, { name, price, quantity }];
-      }
-    });
+    const existingItem = items.find((item) => item.name === name);
+    if (existingItem) {
+      removeItem(name);
+    } else {
+      addItem({ name, price, quantity });
+    }
   };
 
   return (
@@ -70,11 +67,11 @@ export default function Preorder() {
             description={item.description}
             ingredients={item.ingredients}
             price={item.price}
-            preordered={preorderedItems.some((preorderedItem) => preorderedItem.name === item.title)}
+            preordered={items.some((preorderedItem) => preorderedItem.name === item.title)}
             onPreorder={(quantity: number) => handlePreorder(item.title, item.price, quantity)}
           />
         ))}
-          {preorderedItems.length > 0 && <PreorderedItemsCard items={preorderedItems} />}
+          {items.length > 0 && <PreorderedItemsCard items={items} />}
       </Content>
     </PageWrapper>
   );

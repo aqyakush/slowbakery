@@ -7,6 +7,7 @@ import { ThankYouCard, ThankYouText } from '../../components/Card';
 import { PreorderedItem } from '../Preorder';
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
 import styled from 'styled-components';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 const StyledLi = styled.h2`
   display: flex;
@@ -20,8 +21,7 @@ interface FormData {
 }
 
 const CreateOrder = () => {
-  const location = useLocation();
-  const { items } = location.state as { items: PreorderedItem[] } || { items: [] };
+  const { items } = useShoppingCart();
   const { register, handleSubmit } = useForm<FormData>();
   const [submitted, setSubmitted] = React.useState(false);
 

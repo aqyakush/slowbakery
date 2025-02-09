@@ -1,7 +1,8 @@
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaQuestionCircle} from 'react-icons/fa';
+import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaQuestionCircle, FaShoppingCart} from 'react-icons/fa';
+import { useShoppingCart } from '../context/ShoppingCartContext';
 
 
 const NavigationWrapper = styled.nav`
@@ -53,7 +54,25 @@ const IconTextWrapper = styled.div`
   align-items: center;
 `;
 
+const CartIconWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+const CartBubble = styled.div`
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+`;
+
 const Navigation: React.FC = () => {
+  const { items } = useShoppingCart();
   return (
     <NavigationWrapper>
       <NavigationContent>
@@ -94,18 +113,16 @@ const Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/faq">
-              <IconTextWrapper>
-                <FaQuestionCircle />
-                <span>FAQ</span>
-                </IconTextWrapper>
+              <NavLink to="/shopping-cart">
+              <CartIconWrapper>
+                <FaShoppingCart size={24} />
+                {items.length > 0 && <CartBubble>{items.length}</CartBubble>}
+              </CartIconWrapper>
               </NavLink>
             </li>
           </NavLinks>
-          
       </NavigationContent>
     </NavigationWrapper>
-      
   );
 };
 
