@@ -21,13 +21,13 @@ const PreorderedTitle = styled.h2`
   margin: 0 0 16px 0;
 `;
 
-const PreorderedItem = styled.p`
+const PreorderedItem = styled(motion.p)`
   font-size: 1rem;
   color: #666;
   margin: 8px 0;
 `;
 
-const CreateOrderButton = styled.button`
+const CreateOrderButton = styled(motion.button)`
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
@@ -45,23 +45,39 @@ interface PreorderedItemsCardProps {
 const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
   const navigate = useNavigate();
 
+
   const handleCreateOrder = () => {
     navigate('/preorder/create-order', { state: { items } });
   };
 
   return (
+    <AnimatePresence>
       <PreorderedCardWrapper
         initial={{ x: '-100%' }}
         animate={{ x: 0 }}
-        exit={{ x: '-100%' }}
-        transition={{ type: 'spring', stiffness: 100 }}
+        transition={{ type: 'spring', duration: 1, bounce: 0.5
+      }}
+        layout
       >
-        <PreorderedTitle>Pre-ordered Items</PreorderedTitle>
-        {items.map((item, index) => (
-          <PreorderedItem key={index}>{item}</PreorderedItem>
-        ))}
-        <CreateOrderButton onClick={handleCreateOrder}>Create Order</CreateOrderButton>
+        
+          <PreorderedTitle>Pre-ordered Items</PreorderedTitle>
+          {items.map((item, index) => (
+            <PreorderedItem
+              key={index}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              layout
+            >
+              {item}
+            </PreorderedItem>
+          ))}
+            <CreateOrderButton onClick={handleCreateOrder} layout>
+              Create Order
+            </CreateOrderButton>
       </PreorderedCardWrapper>
+    </AnimatePresence>
   );
 };
 
