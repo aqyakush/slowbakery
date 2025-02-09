@@ -10,6 +10,7 @@ type ShoppingCartContextProps = {
   items: ShoppingCartItem[];
   addItem: (item: ShoppingCartItem) => void;
   removeItem: (name: string) => void;
+  updateItemQuantity: (name: string, quantity: number) => void;
   clearCart: () => void;
 }
 
@@ -47,12 +48,20 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     setItems((prevItems) => prevItems.filter((item) => item.name !== name));
   };
 
+  const updateItemQuantity = (name: string, quantity: number) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.name === name ? { ...item, quantity } : item
+      )
+    );
+  };
+
   const clearCart = () => {
     setItems([]);
   };
 
   return (
-    <ShoppingCartContext.Provider value={{ items, addItem, removeItem, clearCart }}>
+    <ShoppingCartContext.Provider value={{ items, addItem, removeItem, clearCart, updateItemQuantity }}>
       {children}
     </ShoppingCartContext.Provider>
   );

@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Subscription from './pages/Subscription';
 import OurStory from './pages/OurStory';
 import Preorder from './pages/Preorder';
-import CreateOrder from './pages/CreateOrder';
+import ShoppingCard from './pages/ShoppingCard';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 const AppWrapper = styled.div`
@@ -30,11 +30,10 @@ const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/preorder" element={<Preorder />} />
-                <Route path="/preorder/create-order" element={<CreateOrder />} />
                 <Route path="/subscription" element={<Subscription />} />
                 <Route path="/our-story" element={<OurStory />} />
                 <Route path="*" element={<Home />} />
-                <Route path="/shopping-cart" element={<CreateOrder />} />
+                <Route path="/shopping-cart" element={<ShoppingCard />} />
               </Routes>
             </Main>
             <Footer />

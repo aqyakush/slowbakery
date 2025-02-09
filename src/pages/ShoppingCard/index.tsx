@@ -1,18 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
 import { PageWrapper, Title, Content } from '../../components/StyledComponets';
 import { Form, FormSection, Input, Label, SubmitButton } from '../../components/Form';
 import { ThankYouCard, ThankYouText } from '../../components/Card';
-import { PreorderedItem } from '../Preorder';
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
 import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { FaTrash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-const StyledLi = styled.h2`
+const StyledLi = styled.li`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 1rem;
+  color: #666;
+  margin: 8px 0;
+`;
+
+const QuantityInput = styled.input`
+  width: 50px;
+  padding: 5px;
+  margin-right: 10px;
+  font-size: 1rem;
+  text-align: center;
+`;
+
+const RemoveIcon = styled(FaTrash)`
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 10px;
+`;
+
+const ItemDetails = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ItemName = styled.span`
+  width: 300px;
+  margin-right: 10px;
 `;
 
 interface FormData {
@@ -20,10 +48,21 @@ interface FormData {
   items: { [key: string]: boolean };
 }
 
-const CreateOrder = () => {
-  const { items } = useShoppingCart();
+const ShoppingCard = () => {
+  const { items, removeItem, updateItemQuantity } = useShoppingCart();
   const { register, handleSubmit } = useForm<FormData>();
   const [submitted, setSubmitted] = React.useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (items.length === 0) {
+      navigate('/preorder');
+    }
+  }, [items, navigate]);
+
+  const handleQuantityChange = (name: string, quantity: number) => {
+    updateItemQuantity(name, quantity);
+  };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const formUrl = 'https://docs.google.com/forms/d/1PfSTT692aHNyLe_F9tPLU8p6c_hE6jaTJhorWyXElQ4/formResponse';
@@ -71,11 +110,22 @@ const CreateOrder = () => {
               {items.map((item) => {
                 const totalPrice = (item.price * item.quantity).toFixed(2);
                 return ((
-                  <StyledLi>
-                    <span>{item.name}  {item.quantity}pcs</span>
-                    <span>{totalPrice}€</span>
-                    <Input type="hidden" {...register(`items.${item}`)} value={item.name} />
-                  </StyledLi>
+                  <StyledLi key={item.name}>
+                  <ItemDetails>
+                    <ItemName>{item.name}</ItemName>
+                    <QuantityInput
+                      type="number"
+                      value={item.quantity}
+                      min="1"
+                      onChange={(e) => handleQuantityChange(item.name, Number(e.target.value))}
+                    />
+                  </ItemDetails>
+                  <div>
+                    <span>€{totalPrice}</span>
+                    <RemoveIcon onClick={() => removeItem(item.name)} />
+                  </div>
+                  <Input type="hidden" {...register(`items.${item.name}`)} value={item.name} />
+                </StyledLi>
                 ));
               })}
               </ul>
@@ -95,4 +145,4 @@ const CreateOrder = () => {
   );
 };
 
-export default CreateOrder;
+export default ShoppingCard;

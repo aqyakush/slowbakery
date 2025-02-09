@@ -1,8 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { PreorderedItem } from './index';
+import { NavLink } from 'react-router-dom';
+
 
 const PreorderedCardWrapper = styled(motion.div)`
   position: fixed;
@@ -30,17 +31,6 @@ const PreorderedItemP = styled(motion.p)`
   margin: 8px 0;
 `;
 
-const CreateOrderButton = styled(motion.button)`
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-top: 16px;
-`;
-
 export const HorizontalLine = styled.hr`
   border: none;
   border-top: 1px solid #ddd;
@@ -55,18 +45,25 @@ export const TotalRow = styled.div`
   margin-top: 16px;
 `;
 
+const ShoppingCardLink = styled(NavLink)`
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 16px;
+  text-decoration: none;
+  text-align: center;
+`;
+
 interface PreorderedItemsCardProps {
   items: PreorderedItem[];
 }
 
 const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
-  const navigate = useNavigate();
-
-
-  const handleCreateOrder = () => {
-    navigate('/preorder/create-order', { state: { items } });
-  };
-
   const itemsText = items.map((item) => {
     const totalPrice = (item.price * item.quantity).toFixed(2);
     return (
@@ -107,9 +104,9 @@ const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
             <span>Total:</span>
             <span>{totalPrice}€</span>
           </TotalRow>
-            <CreateOrderButton onClick={handleCreateOrder} layout>
-              Create Order
-            </CreateOrderButton>
+          <ShoppingCardLink to="/shopping-cart">
+            Go to shopping cart
+          </ShoppingCardLink>
       </PreorderedCardWrapper>
     </AnimatePresence>
   );

@@ -112,14 +112,16 @@ const Navigation: React.FC = () => {
                 </IconTextWrapper>
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/shopping-cart">
-              <CartIconWrapper>
-                <FaShoppingCart size={24} />
-                {items.length > 0 && <CartBubble>{items.length}</CartBubble>}
-              </CartIconWrapper>
-              </NavLink>
-            </li>
+            {items.length > 0 && (
+              <li>
+                <NavLink to="/shopping-cart">
+                <CartIconWrapper>
+                  <FaShoppingCart size={24} />
+                  {items.length > 0 && <CartBubble>{items.length}</CartBubble>}
+                </CartIconWrapper>
+                </NavLink>
+              </li>
+            )}
           </NavLinks>
       </NavigationContent>
     </NavigationWrapper>
