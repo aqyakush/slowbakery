@@ -2,6 +2,8 @@ import React from 'react';
 import { Content, PageWrapper, Title } from '../../components/StyledComponets';
 import Card from './Cards';
 import PreorderedItemsCard from './PreorderedItemsCard';
+import { AnimatePresence } from 'framer-motion';
+
 
 interface BreadItem {
   title: string;
@@ -45,6 +47,7 @@ export default function Preorder() {
   };
 
   return (
+    
     <PageWrapper>
       <Title>Preorder</Title>
       <Content>
@@ -61,7 +64,9 @@ export default function Preorder() {
             onPreorder={() => handlePreorder(item.title)}
           />
         ))}
-        {preorderedItems.length > 0 && <PreorderedItemsCard items={preorderedItems} />}
+        <AnimatePresence>
+          {preorderedItems.length > 0 && <PreorderedItemsCard items={preorderedItems} />}
+        </AnimatePresence>
       </Content>
     </PageWrapper>
   );

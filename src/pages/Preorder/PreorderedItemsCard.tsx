@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 
-const PreorderedCardWrapper = styled.div`
+const PreorderedCardWrapper = styled(motion.div)`
   position: fixed;
   top: 20px;
   left: 20px;
@@ -49,13 +50,18 @@ const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
   };
 
   return (
-    <PreorderedCardWrapper>
-      <PreorderedTitle>Pre-ordered Items</PreorderedTitle>
-      {items.map((item, index) => (
-        <PreorderedItem key={index}>{item}</PreorderedItem>
-      ))}
-      <CreateOrderButton onClick={handleCreateOrder}>Create Order</CreateOrderButton>
-    </PreorderedCardWrapper>
+      <PreorderedCardWrapper
+        initial={{ x: '-100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '-100%' }}
+        transition={{ type: 'spring', stiffness: 100 }}
+      >
+        <PreorderedTitle>Pre-ordered Items</PreorderedTitle>
+        {items.map((item, index) => (
+          <PreorderedItem key={index}>{item}</PreorderedItem>
+        ))}
+        <CreateOrderButton onClick={handleCreateOrder}>Create Order</CreateOrderButton>
+      </PreorderedCardWrapper>
   );
 };
 
