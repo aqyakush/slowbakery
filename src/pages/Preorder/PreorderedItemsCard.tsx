@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
+import { PreorderedItem } from './index';
 
 const PreorderedCardWrapper = styled(motion.div)`
   position: fixed;
@@ -21,7 +22,9 @@ const PreorderedTitle = styled.h2`
   margin: 0 0 16px 0;
 `;
 
-const PreorderedItem = styled(motion.p)`
+const PreorderedItemP = styled(motion.p)`
+  display: flex;
+  justify-content: space-between;
   font-size: 1rem;
   color: #666;
   margin: 8px 0;
@@ -38,8 +41,22 @@ const CreateOrderButton = styled(motion.button)`
   margin-top: 16px;
 `;
 
+export const HorizontalLine = styled.hr`
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 16px 0;
+`;
+
+export const TotalRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 16px;
+`;
+
 interface PreorderedItemsCardProps {
-  items: string[];
+  items: PreorderedItem[];
 }
 
 const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
@@ -50,6 +67,18 @@ const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
     navigate('/preorder/create-order', { state: { items } });
   };
 
+  const itemsText = items.map((item) => {
+    const totalPrice = (item.price * item.quantity).toFixed(2);
+    return (
+      <>
+        <span>{item.name}  {item.quantity}pcs</span>
+        <span>{totalPrice}€</span>
+      </>);
+  } 
+  );
+
+  const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+
   return (
     <AnimatePresence>
       <PreorderedCardWrapper
@@ -59,10 +88,10 @@ const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
       }}
         layout
       >
-        
           <PreorderedTitle>Pre-ordered Items</PreorderedTitle>
-          {items.map((item, index) => (
-            <PreorderedItem
+          <HorizontalLine />
+          {itemsText.map((item, index) => (
+            <PreorderedItemP
               key={index}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -71,8 +100,13 @@ const PreorderedItemsCard: React.FC<PreorderedItemsCardProps> = ({ items }) => {
               layout
             >
               {item}
-            </PreorderedItem>
+            </PreorderedItemP>
           ))}
+          <HorizontalLine />
+          <TotalRow>
+            <span>Total:</span>
+            <span>{totalPrice}€</span>
+          </TotalRow>
             <CreateOrderButton onClick={handleCreateOrder} layout>
               Create Order
             </CreateOrderButton>

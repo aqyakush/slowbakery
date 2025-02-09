@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
@@ -59,29 +59,56 @@ const CardButton = styled.button<{ preordered: boolean }>`
   margin-top: 16px;
 `;
 
+const QuantityInput = styled.input`
+  width: 50px;
+  padding: 5px;
+  margin-top: 16px;
+  margin-right: 10px;
+  font-size: 1rem;
+  text-align: center;
+`;
+
 interface CardProps {
   title: string;
   image: string;
   description: string;
   ingredients: string;
-  price: string;
+  price: number;
   preordered: boolean;
-  onPreorder: () => void;
+  onPreorder: (arg0: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ title, image, description, ingredients, price, preordered, onPreorder }) => (
-  <CardWrapper>
+const Card: React.FC<CardProps> = ({ title, image, description, ingredients, price, preordered, onPreorder }) => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = Number(e.target.value);
+    setQuantity(newQuantity);
+  };
+
+  const handlePreorder = () => {
+    onPreorder(quantity);
+  };
+  
+  return (<CardWrapper>
     <CardImage src={image} alt={title} />
     <CardContent>
       <CardTitle>{title}</CardTitle>
       <CardDescription>{description}</CardDescription>
       <CardIngredients>{ingredients}</CardIngredients>
-      <CardPrice>{price}</CardPrice>
-      <CardButton preordered={preordered} onClick={onPreorder}>
-        {preordered ? 'Remove from order' : 'Add to order'}
+      <CardPrice>€{price.toFixed(2)}</CardPrice>
+      <QuantityInput
+          type="number"
+          value={quantity}
+          min="1"
+          onChange={handleQuantityChange}
+          disabled={preordered}
+      />
+      <CardButton preordered={preordered} onClick={handlePreorder}>
+          {preordered ? 'Remove from order' : 'Add to order'}
       </CardButton>
     </CardContent>
-  </CardWrapper>
-);
+  </CardWrapper>);
+};
 
 export default Card;
