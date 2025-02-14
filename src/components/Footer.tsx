@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
       <FooterContent>
         <Copyright>&copy; 2025 Slow Bakery. All rights reserved.</Copyright>
         <SocialLinks>
-          <SocialLink href="https://www.instagram.com/bakedbysoni" target="_blank" rel="noopener noreferrer">
+          <SocialLink href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
             <FaInstagram />
           </SocialLink>
         </SocialLinks>
