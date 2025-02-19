@@ -1,7 +1,7 @@
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaShoppingCart} from 'react-icons/fa';
+import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaShoppingCart, FaEnvelope} from 'react-icons/fa';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 
 
@@ -122,6 +122,14 @@ const Navigation: React.FC = () => {
                 </NavLink>
               </li>
             )}
+            <li>
+              <NavLink to="/contact">
+                <IconTextWrapper>
+                  <FaEnvelope />
+                  <span>Contact</span>
+                </IconTextWrapper>
+              </NavLink>
+            </li>
           </NavLinks>
       </NavigationContent>
     </NavigationWrapper>

@@ -9,6 +9,7 @@ import OurStory from './pages/OurStory';
 import Preorder from './pages/Preorder';
 import ShoppingCard from './pages/ShoppingCard';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
+import Contact from './pages/Contact';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                 <Route path="/our-story" element={<OurStory />} />
                 <Route path="*" element={<Home />} />
                 <Route path="/shopping-cart" element={<ShoppingCard />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </Main>
             <Footer />
