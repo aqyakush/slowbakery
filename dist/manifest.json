@@ -1,0 +1,8 @@
+{
+  "short_name": "SlowBakery",
+  "name": "Slow Bakery",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
