@@ -3,6 +3,7 @@ import {  Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaShoppingCart, FaEnvelope} from 'react-icons/fa';
 import { useShoppingCart } from '../context/ShoppingCartContext';
+import { useTranslation } from 'react-i18next';
 
 
 const NavigationWrapper = styled.nav`
@@ -71,8 +72,37 @@ const CartBubble = styled.div`
   font-size: 0.8rem;
 `;
 
+const LanguageSwitcher = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const LanguageButton = styled.button<{ selected: boolean }>`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
+  color: ${({ selected }) => (selected ? '#92400e' : '#666')}; /* Match other colors */
+  transition: color 0.3s;
+
+  &:hover {
+    color: #92400e; /* Match hover color */
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const Navigation: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const { items } = useShoppingCart();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <NavigationWrapper>
       <NavigationContent>
@@ -84,7 +114,7 @@ const Navigation: React.FC = () => {
               <NavLink to="/">
               <IconTextWrapper>
                 <FaHome />
-                <span>Home</span>
+                <span>{t('Home')}</span>
                 </IconTextWrapper>
               </NavLink>
             </li>
@@ -130,6 +160,23 @@ const Navigation: React.FC = () => {
                 </IconTextWrapper>
               </NavLink>
             </li>
+            <li>
+            <LanguageSwitcher>
+              <LanguageButton
+                onClick={() => changeLanguage('fi')}
+                selected={i18n.language === 'fi'}
+              >
+                FI
+              </LanguageButton>
+              <span>/</span>
+              <LanguageButton
+                onClick={() => changeLanguage('en')}
+                selected={i18n.language === 'en'}
+              >
+                EN
+              </LanguageButton>
+            </LanguageSwitcher>
+          </li>
           </NavLinks>
       </NavigationContent>
     </NavigationWrapper>
