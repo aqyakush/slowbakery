@@ -7,6 +7,8 @@ import Backend from 'i18next-http-backend';
 // have a look at the Quick start guide 
 // for passing in lng and translations on init
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
   // learn more: https://github.com/i18next/i18next-http-backend
@@ -27,7 +29,9 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
     },
     backend: {
-        loadPath: '/slowbakery/locales/{{lng}}/{{ns}}.json', // Correct placement of loadPath
+        loadPath: isProduction
+            ? '/slowbakery/locales/{{lng}}/{{ns}}.json' // Path for GitHub Pages
+            : '/locales/{{lng}}/{{ns}}.json', // Path for local development
     },
   });
 
