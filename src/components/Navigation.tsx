@@ -111,14 +111,6 @@ const Navigation: React.FC = () => {
           </Logo>
           <NavLinks>
             <li>
-              <NavLink to="/">
-              <IconTextWrapper>
-                <FaHome />
-                <span>{t('home')}</span>
-                </IconTextWrapper>
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/our-story">
               <IconTextWrapper>
                 <FaBookOpen />
