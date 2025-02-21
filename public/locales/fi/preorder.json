@@ -1,0 +1,18 @@
+{
+    "removeFromOrder": "Poista tilauksesta",
+    "addToOrder": "Lisää tilaukseen",
+    "Classic Sourdough": "Klassinen Hapanleipä",
+    "classicSourdoughDescription": "Klassinen hapanleipä, jossa on rapea kuori ja pehmeä sisus.",
+    "classicSourdoughIngredients": "Jauho, Vesi, Suola, Hapanjuuri",
+    "Sunflower and Sesame Bread": "Auringonkukka ja Seesamileipä",
+    "sunflowerSesameBreadDescription": "Herkullinen leipä, jossa on auringonkukan ja seesaminsiemeniä.",
+    "sunflowerSesameBreadIngredients": "Jauho, Vesi, Suola, Auringonkukansiemenet, Seesaminsiemenet",
+    "Olive Bread": "Oliivileipä",
+    "oliveBreadDescription": "Maukas leipä, jossa on oliiveja.",
+    "oliveBreadIngredients": "Jauho, Vesi, Suola, Oliivit",
+    "preorderTitle": "Ennakkotilaus",
+    "preorderWelcomeMessage": "Tervetuloa ennakkotilaussivullemme. Täällä voit tehdä tilauksia erityisistä tuotteista tai tulevista tapahtumista.",
+    "preorderedItemsTitle": "Ennakkotilatut tuotteet",
+    "total": "Yhteensä",
+    "goToShoppingCart": "Siirry ostoskoriin"
+}

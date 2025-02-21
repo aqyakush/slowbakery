@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { useTranslation } from 'react-i18next';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -80,6 +81,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, image, description, ingredients, price, preordered, onPreorder }) => {
+  const { t } = useTranslation('preorder');
   const { items } = useShoppingCart();
   const [quantity, setQuantity] = useState(items.find((item) => item.name === title)?.quantity || 1);
 
@@ -95,9 +97,9 @@ const Card: React.FC<CardProps> = ({ title, image, description, ingredients, pri
   return (<CardWrapper>
     <CardImage src={image} alt={title} />
     <CardContent>
-      <CardTitle>{title}</CardTitle>
-      <CardDescription>{description}</CardDescription>
-      <CardIngredients>{ingredients}</CardIngredients>
+      <CardTitle>{t(title)}</CardTitle>
+      <CardDescription>{t(description)}</CardDescription>
+      <CardIngredients>{t(ingredients)}</CardIngredients>
       <CardPrice>€{price.toFixed(2)}</CardPrice>
       <QuantityInput
           type="number"
@@ -107,7 +109,7 @@ const Card: React.FC<CardProps> = ({ title, image, description, ingredients, pri
           disabled={preordered}
       />
       <CardButton preordered={preordered} onClick={handlePreorder}>
-          {preordered ? 'Remove from order' : 'Add to order'}
+          {preordered ? t('removeFromOrder') : t('addToOrder')}
       </CardButton>
     </CardContent>
   </CardWrapper>);

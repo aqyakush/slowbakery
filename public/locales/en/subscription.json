@@ -1,0 +1,16 @@
+{
+  "thankYouSubscriptionMessage": "Thank you for showing interest in our subscription. Our team will contact you shortly.",
+  "subscriptionFormDescription": "Fill in the form above to start your subscription, and we’ll begin delivering delicious loaves to your door every week!",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "address": "Address",
+  "dietaryRestrictions": "Dietary Restrictions",
+  "subscribe": "Subscribe",
+  "subscriptionTitle": "Subscription",
+  "weeklyDelivery": "<strong>1. Weekly Delivery:</strong> You’ll receive a 450g–550g loaf of bread delivered to your door every Monday evening. - <strong>Exception for the first delivery:</strong> It will be on <strong>Tuesday, February 4th</strong>. If this doesn’t work for you, please let me know.",
+  "deliveryWindow": "<strong>2. Delivery Window:</strong> The bread will be delivered between <strong>7 PM and 8 PM</strong>. I’ll send a message with the estimated time on that day. If this timing isn’t suitable for you, please let me know!",
+  "loafSelection": "<strong>3. Loaf Selection:</strong> Each week alternates between a classic loaf and a special loaf from our menu (detailed below). The choice will be random, so please inform me of any dietary restrictions or allergies.",
+  "ingredients": "<strong>4. Ingredients:</strong> We use only <strong>organic flours</strong> from small, local millers. This supports the environment, our community, and our health. In addition, all loaves are free from preservatives and chemicals.",
+  "cost": "<strong>5. Cost:</strong> The monthly fee is <strong>X euros</strong>, which includes delivery."
+}

@@ -1,0 +1,18 @@
+{
+    "removeFromOrder": "Remove from order",
+    "addToOrder": "Add to order",
+    "Classic Sourdough": "Classic Sourdough",
+    "classicSourdoughDescription": "A classic sourdough bread with a crispy crust and soft interior.",
+    "classicSourdoughIngredients": "Flour, Water, Salt, Sourdough Starter",
+    "Sunflower and Sesame Bread": "Sunflower and Sesame Bread",
+    "sunflowerSesameBreadDescription": "A delicious bread with sunflower and sesame seeds.",
+    "sunflowerSesameBreadIngredients": "Flour, Water, Salt, Sunflower Seeds, Sesame Seeds",
+    "Olive Bread": "Olive Bread",
+    "oliveBreadDescription": "A flavorful bread with olives.",
+    "oliveBreadIngredients": "Flour, Water, Salt, Olives",
+    "preorderTitle": "Preorder",
+    "preorderWelcomeMessage": "Welcome to our preorder page. Here you can place orders for special items or upcoming events.",
+    "preorderedItemsTitle": "Pre-ordered Items",
+    "total": "Total",
+    "goToShoppingCart": "Go to shopping cart"
+}

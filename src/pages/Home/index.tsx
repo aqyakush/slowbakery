@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { PageWrapper } from "../../components/StyledComponets"
 import { Card, CardButton, CardWrapper } from "../../components/Card";
+import { useTranslation } from "react-i18next";
 
 const Section = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const SectionTitle = styled.h2`
 `
 
 export default function Home() {
+  const { t } = useTranslation('home');
   const navigate = useNavigate();
   return (
     <PageWrapper>
@@ -35,30 +37,24 @@ export default function Home() {
           <img src="https://www.theperfectloaf.com/wp-content/uploads/2015/12/theperfectloaf-mybestsourdoughrecipe-title-1.jpg" alt="Slow Bakery" style={{ width: '100%', height: 'auto' }} />
         </ImageWrapper>
         <TextWrapper>
-          <SectionTitle>Slow Bakery From Helsinki</SectionTitle>
-          <p>
-            At Slow Bakery, we bake sourdough with love, patience, and attention to detail. Every loaf is handcrafted using traditional methods, high-quality ingredients, and plenty of care to bring out the best flavors and textures.
-          </p>
-          <p>
-            Based in Helsinki, we take pride in sharing our passion for real bread with our community. Whether you’re looking for a classic wheat loaf or something with unique inclusions, we invite you to experience the joy of freshly baked sourdough.
-          </p>
-          <p>
-            Come taste the difference—baked for you, with love.
-          </p>
+          <SectionTitle>{t('homeTitle')}</SectionTitle>
+          <p>{t('homeDescription1')}</p>
+          <p>{t('homeDescription2')}</p>
+          <p>{t('homeDescription3')}</p>
         </TextWrapper>
       </Section>
 
       <Section>
         <CardWrapper>
           <Card>
-            <h3>Pre-order</h3>
-            <p>Pre-order your favorite bread from our curated selection. Orders are placed before baking to ensure freshness, prevent overproduction, and reduce waste. Click the link to place your pre-order!</p>
-            <CardButton onClick={() => navigate('/preorder')}>Pre-order Now</CardButton>
+            <h3>{t('preorderTitle')}</h3>
+            <p>{t('preorderDescription')}</p>
+            <CardButton onClick={() => navigate('/preorder')}>{t('preorderButton')}</CardButton>
           </Card>
           <Card>
-            <h3>Subscription</h3>
-            <p>Join our bread subscription and receive a freshly baked loaf at your doorstep every Monday. Each week brings a new surprise, from classic wheat to flavorful loaves with delicious inclusions. For more details, click the link!</p>
-            <CardButton onClick={() => navigate('/subscription')}>Explore Subscription</CardButton>
+            <h3>{t('subscriptionTitle')}</h3>
+            <p>{t('subscriptionDescription')}</p>
+            <CardButton onClick={() => navigate('/subscription')}>{t('subscriptionButton')}</CardButton>
           </Card>
         </CardWrapper>
       </Section>

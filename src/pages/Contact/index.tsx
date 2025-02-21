@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
 import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
 import { ThankYouCard, ThankYouText } from '../../components/Card';
+import { useTranslation } from 'react-i18next';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -16,6 +17,7 @@ const TextWrapper = styled.div`
 `;
 
 export default function Contact() {
+  const { t } = useTranslation('contact');
   const { register, handleSubmit } = useForm();
   const [submitted, setSubmitted] = useState(false);
 
@@ -43,23 +45,23 @@ export default function Contact() {
 
   return (
     <PageWrapper>
-      <Title>Contact Us</Title>
+      <Title>{t('contactUsTitle')}</Title>
       {submitted ? (
         <ThankYouCard>
-          <ThankYouText>Thank you for your message! We will get back to you soon.</ThankYouText>
+          <ThankYouText>{t('thankYouMessage')}</ThankYouText>
         </ThankYouCard>
       ) : (
         <TextWrapper>
             <FormWrapper>
                 <FormSection>
                     <Form onSubmit={handleSubmit(onSubmit)}>
-                        <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name">{t('name')}</Label>
                         <Input id="name" {...register('name', { required: true })} />
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">{t('email')}</Label>
                         <Input id="email" type="email" {...register('email', { required: true })} />
-                        <Label htmlFor="message">Message</Label>
+                        <Label htmlFor="message">{t('message')}</Label>
                         <TextArea id="message" {...register('message', { required: true })} />
-                        <SubmitButton type="submit">Submit</SubmitButton>
+                        <SubmitButton type="submit">{t('submit')}</SubmitButton>
                     </Form>
                 </FormSection>
             </FormWrapper>

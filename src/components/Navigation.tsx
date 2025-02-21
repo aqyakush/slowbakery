@@ -96,7 +96,7 @@ const LanguageButton = styled.button<{ selected: boolean }>`
 `;
 
 const Navigation: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation('navigation');
   const { items } = useShoppingCart();
 
   const changeLanguage = (lng: string) => {
@@ -114,7 +114,7 @@ const Navigation: React.FC = () => {
               <NavLink to="/">
               <IconTextWrapper>
                 <FaHome />
-                <span>{t('Home')}</span>
+                <span>{t('home')}</span>
                 </IconTextWrapper>
               </NavLink>
             </li>
@@ -122,7 +122,7 @@ const Navigation: React.FC = () => {
               <NavLink to="/our-story">
               <IconTextWrapper>
                 <FaBookOpen />
-                <span>Our Story</span>
+                <span>{t('ourStory')}</span>
                 </IconTextWrapper>
               </NavLink>
             </li>
@@ -130,7 +130,7 @@ const Navigation: React.FC = () => {
               <NavLink to="/preorder">
               <IconTextWrapper>
                 <FaBoxOpen />
-                <span>Preorder</span>
+                <span>{t('preorder')}</span>
                 </IconTextWrapper>
               </NavLink>
             </li>
@@ -138,7 +138,7 @@ const Navigation: React.FC = () => {
               <NavLink to="/subscription">
               <IconTextWrapper>
                 <FaBell />
-                <span>Subscription</span>
+                <span>{t('subscription')}</span>
                 </IconTextWrapper>
               </NavLink>
             </li>
@@ -156,7 +156,7 @@ const Navigation: React.FC = () => {
               <NavLink to="/contact">
                 <IconTextWrapper>
                   <FaEnvelope />
-                  <span>Contact</span>
+                  <span>{t('contact')}</span>
                 </IconTextWrapper>
               </NavLink>
             </li>

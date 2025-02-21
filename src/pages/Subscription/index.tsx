@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
 import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
 import { ThankYouCard, ThankYouText } from '../../components/Card';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -30,6 +31,7 @@ const CenteredParagraph = styled.p`
 
 
 export default function Subscription() {
+  const { t } = useTranslation('subscription');
   const { register, handleSubmit } = useForm();
   const [submitted, setSubmitted] = useState(false);
 
@@ -62,22 +64,22 @@ export default function Subscription() {
     <PageWrapper>
       <Section>
         <TextWrapper>
-          <Title>Subscription</Title>
-          <p>
-              <strong>1. Weekly Delivery:</strong> You’ll receive a 450g–550g loaf of bread delivered to your door every Monday evening. - <strong>Exception for the first delivery:</strong> It will be on <strong>Tuesday, February 4th</strong>. If this doesn’t work for you, please let me know.
-          </p>
-          <p>
-              <strong>2. Delivery Window:</strong> The bread will be delivered between <strong>7 PM and 8 PM</strong>. I’ll send a message with the estimated time on that day. If this timing isn’t suitable for you, please let me know!
-          </p>
-          <p>
-              <strong>3. Loaf Selection:</strong> Each week alternates between a classic loaf and a special loaf from our menu (detailed below). The choice will be random, so please inform me of any dietary restrictions or allergies.
-          </p>
-          <p>
-              <strong>4. Ingredients:</strong> We use only <strong>organic flours</strong> from small, local millers. This supports the environment, our community, and our health. In addition, all loaves are free from preservatives and chemicals.
-          </p>
-          <p>
-              <strong>5. Cost:</strong> The monthly fee is <strong>X euros</strong>, which includes delivery.
-          </p>
+          <Title>{t('subscriptionTitle')}</Title>
+            <p>
+              <Trans i18nKey="weeklyDelivery" components={{ strong: <strong /> }} ns="subscription"/>
+            </p>
+            <p>
+              <Trans i18nKey="deliveryWindow" components={{ strong: <strong /> }} ns="subscription"/>
+            </p>
+            <p>
+              <Trans i18nKey="loafSelection" components={{ strong: <strong /> }} ns="subscription"/>
+            </p>
+            <p>
+              <Trans i18nKey="ingredients" components={{ strong: <strong /> }} ns="subscription"/>
+            </p>
+            <p>
+              <Trans i18nKey="cost" components={{ strong: <strong /> }} ns="subscription"/>
+            </p>
         </TextWrapper>
         <ImageWrapper>
           <img src="https://previews.123rf.com/images/kos911/kos9111903/kos911190300146/121327295-vector-illustration-of-bread-truck-delivery-fresh-bread-delivery-icon-bakery-truck-or-emblem-with.jpg" alt="Slow Bakery" style={{ width: '100%', height: 'auto' }} />
@@ -88,33 +90,33 @@ export default function Subscription() {
         <FormWrapper>
       {submitted ? (
               <ThankYouCard>
-                <ThankYouText>Thank you for showing interest in our subscription. Our team will contact you shortly.</ThankYouText>
+                <ThankYouText>{t('thankYouSubscriptionMessage')}</ThankYouText>
               </ThankYouCard>
           ) : (
             <>
               <Section>
               <TextWrapper>
-                <CenteredParagraph>Fill in the form above to start your subscription, and we’ll begin delivering delicious loaves to your door every week!</CenteredParagraph>
+                <CenteredParagraph>{t('subscriptionFormDescription')}</CenteredParagraph>
               </TextWrapper>
               </Section>
               <FormSection>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" {...register('name')} placeholder="Name" required />
+                  <Label htmlFor="name">{t('name')}</Label>
+                  <Input id="name" {...register('name')} placeholder={t('name')} required />
                   
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" {...register('email')} type="email" placeholder="Email" required />
+                  <Label htmlFor="email">{t('email')}</Label>
+                  <Input id="email" {...register('email')} type="email" placeholder={t('email')} required />
                   
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" {...register('phone')} type="tel" placeholder="Phone Number" required />
+                  <Label htmlFor="phone">{t('phone')}</Label>
+                  <Input id="phone" {...register('phone')} type="tel" placeholder={t('phone')} required />
                   
-                  <Label htmlFor="address">Address</Label>
-                  <Input id="address" {...register('address')} placeholder="Address" required />
+                  <Label htmlFor="address">{t('address')}</Label>
+                  <Input id="address" {...register('address')} placeholder={t('address')} required />
                   
-                  <Label htmlFor="dietaryRestrictions">Dietary Restrictions</Label>
-                  <TextArea id="dietaryRestrictions" {...register('dietaryRestrictions')} placeholder="Dietary Restrictions" rows={4} />
+                  <Label htmlFor="dietaryRestrictions">{t('dietaryRestrictions')}</Label>
+                  <TextArea id="dietaryRestrictions" {...register('dietaryRestrictions')} placeholder={t('dietaryRestrictions')} rows={4} />
                   
-                  <SubmitButton type="submit">Subscribe</SubmitButton>
+                  <SubmitButton type="submit">{t('subscribe')}</SubmitButton>
                 </Form>
               </FormSection>
              </>

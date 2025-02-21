@@ -1,0 +1,16 @@
+{
+  "thankYouSubscriptionMessage": "Kiitos kiinnostuksestasi tilaustamme kohtaan. Tiimimme ottaa sinuun pian yhteyttä.",
+  "subscriptionFormDescription": "Täytä alla oleva lomake aloittaaksesi tilauksesi, ja aloitamme herkullisten leipien toimittamisen kotiovellesi joka viikko!",
+  "name": "Nimi",
+  "email": "Sähköposti",
+  "phone": "Puhelinnumero",
+  "address": "Osoite",
+  "dietaryRestrictions": "Ruokavaliorajoitukset",
+  "subscribe": "Tilaa",
+  "subscriptionTitle": "Kuukausitilaus",
+  "weeklyDelivery": "<strong>1. Viikoittainen toimitus:</strong> Saat 450g–550g leivän toimitettuna kotiovellesi joka maanantai-ilta. - <strong>Ensimmäisen toimituksen poikkeus:</strong> Se on tiistaina 4. helmikuuta. Jos tämä ei sovi sinulle, ilmoitathan siitä minulle.",
+  "deliveryWindow": "<strong>2. Toimitusaika:</strong> Leipä toimitetaan klo <strong>19.00 ja 20.00</strong> välillä. Lähetän viestin arvioidusta ajasta sinä päivänä. Jos tämä aika ei sovi sinulle, ilmoitathan siitä minulle!",
+  "loafSelection": "<strong>3. Leipävalikoima:</strong> Joka viikko vuorottelee klassinen leipä ja erikoisleipä valikostamme (tarkemmin alla). Valinta on satunnainen, joten ilmoitathan minulle mahdollisista ruokavaliorajoituksista tai allergioista.",
+  "ingredients": "<strong>4. Ainesosat:</strong> Käytämme vain <strong>orgaanisia jauhoja</strong> pieniltä, paikallisilta myllyiltä. Tämä tukee ympäristöä, yhteisöämme ja terveyttämme. Lisäksi kaikki leivät ovat säilöntäaineettomia ja kemikaalittomia.",
+  "cost": "<strong>5. Kustannukset:</strong> Kuukausimaksu on <strong>X euroa</strong>, joka sisältää toimituksen."
+}

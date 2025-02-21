@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const StyledLi = styled.li`
   display: flex;
@@ -49,6 +50,7 @@ interface FormData {
 }
 
 const ShoppingCard = () => {
+  const { t } = useTranslation(['shoppingcard', 'preorder']);
   const { items, removeItem, updateItemQuantity } = useShoppingCart();
   const { register, handleSubmit } = useForm<FormData>();
   const [submitted, setSubmitted] = React.useState(false);
@@ -86,6 +88,7 @@ const ShoppingCard = () => {
     }).then(() => {
       console.log('Form submitted');
       setSubmitted(true);
+      // FIXME: when clicke the buble in shopping card should dissapear
     }).catch((error) => {
       console.error('Error submitting form:', error);
     });
@@ -96,12 +99,12 @@ const ShoppingCard = () => {
 
   return (
     <PageWrapper>
-      <Title>Create Order</Title>
+      <Title>{t('createOrderTitle')}</Title>
       <Content>
         <FormSection>
           {submitted ? (
             <ThankYouCard>
-              <ThankYouText>Thank you for your order! We will contact you shortly.</ThankYouText>
+              <ThankYouText>{t('thankYouMessage')}</ThankYouText>
             </ThankYouCard>
           ) : (
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -112,7 +115,7 @@ const ShoppingCard = () => {
                 return ((
                   <StyledLi key={item.name}>
                   <ItemDetails>
-                    <ItemName>{item.name}</ItemName>
+                    <ItemName>{t(item.name, { ns: 'preorder' })}</ItemName>
                     <QuantityInput
                       type="number"
                       value={item.quantity}
@@ -131,12 +134,12 @@ const ShoppingCard = () => {
               </ul>
               <HorizontalLine/>
               <TotalRow>
-                <span>Total:</span>
+                <span>{t('total', { ns: 'preorder' })}:</span>
                 <span>{totalPrice}€</span>
               </TotalRow>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" {...register('email')} type="email" placeholder="Email" required />
-              <SubmitButton type="submit">Submit Order</SubmitButton>
+              <Label htmlFor="email">{t('email')}</Label>
+              <Input id="email" {...register('email')} type="email" placeholder={t('email')} required />
+              <SubmitButton type="submit">{t('submitOrder')}</SubmitButton>
             </Form>
           )}
         </FormSection>

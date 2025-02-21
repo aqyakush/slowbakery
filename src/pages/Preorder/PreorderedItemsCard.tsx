@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { useTranslation } from 'react-i18next';
 
 
 const PreorderedCardWrapper = styled(motion.div)`
@@ -61,11 +62,12 @@ const ShoppingCardLink = styled(NavLink)`
 
 const PreorderedItemsCard: React.FC = () => {
   const { items } = useShoppingCart();
+  const { t } = useTranslation('preorder');
   const itemsText = items.map((item) => {
     const totalPrice = (item.price * item.quantity).toFixed(2);
     return (
       <>
-        <span>{item.name}  {item.quantity}pcs</span>
+        <span>{t(item.name)}  {item.quantity}pcs</span>
         <span>{totalPrice}€</span>
       </>);
   } 
@@ -82,7 +84,7 @@ const PreorderedItemsCard: React.FC = () => {
       }}
         layout
       >
-          <PreorderedTitle>Pre-ordered Items</PreorderedTitle>
+          <PreorderedTitle>{t('preorderedItemsTitle')}</PreorderedTitle>
           <HorizontalLine />
           {itemsText.map((item, index) => (
             <PreorderedItemP
@@ -98,11 +100,11 @@ const PreorderedItemsCard: React.FC = () => {
           ))}
           <HorizontalLine />
           <TotalRow>
-            <span>Total:</span>
+            <span>{t('total')}:</span>
             <span>{totalPrice}€</span>
           </TotalRow>
           <ShoppingCardLink to="/shopping-cart">
-            Go to shopping cart
+            {t('goToShoppingCart')}
           </ShoppingCardLink>
       </PreorderedCardWrapper>
     </AnimatePresence>

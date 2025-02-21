@@ -1,13 +1,13 @@
 import { PageWrapper, Title, Content} from "../../components/StyledComponets"
+import { useTranslation } from 'react-i18next';
 
 export default function OurStory() {
+  const { t } = useTranslation('ourstory');
   return (
     <PageWrapper>
-      <Title>Our Story</Title>
+      <Title>{t('ourStoryTitle')}</Title>
       <Content>
-        <p>
-            Let me introduce myself. My name is XXX. I discovered sourdough baking about a year ago, and I’ve been hooked ever since.
-        </p>
+        <p>{t('ourStoryContent')}</p>
       </Content>
     </PageWrapper>
   )
