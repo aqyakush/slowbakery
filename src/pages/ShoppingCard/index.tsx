@@ -50,7 +50,7 @@ type ShoppingCardFormData = {
   items: { [key: string]: string };
 }
 
-const ShoppingCard = () => {
+const ShoppingCard: React.FC = () => {
   const { t } = useTranslation(['shoppingcard', 'preorder']);
   const { items, removeItem, updateItemQuantity, clearCart } = useShoppingCart();
   const { register, handleSubmit } = useForm<ShoppingCardFormData>();

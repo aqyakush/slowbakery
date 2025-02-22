@@ -12,8 +12,8 @@ export const Form = styled.form`
 `;
 
 export const FormWrapper = styled.div`
-  min-height: 600px; /* Adjust this value based on the form's height */
-  `;
+  min-height: 600px;
+`;
 
 export const Label = styled.label`
   margin-top: 10px;

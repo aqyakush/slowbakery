@@ -27,7 +27,7 @@ const SectionTitle = styled.h2`
   margin-bottom: 1rem;
 `
 
-export default function Home() {
+const Home: React.FC = () => {
   const { t } = useTranslation('home');
   const navigate = useNavigate();
   return (
@@ -62,3 +62,4 @@ export default function Home() {
   )
 }
 
+export default Home

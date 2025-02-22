@@ -18,7 +18,7 @@ type ContactFormData = {
   message: string;
 }
 
-export default function Contact() {
+const Contact: React.FC = () => {
   const { t } = useTranslation('contact');
   const { register, handleSubmit } = useForm<ContactFormData>();
   const [submitted, setSubmitted] = useState(false);
@@ -60,3 +60,5 @@ export default function Contact() {
     </PageWrapper>
   );
 }
+
+export default Contact;

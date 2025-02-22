@@ -34,7 +34,7 @@ type SubscriptionFormData = {
 }
 
 
-export default function Subscription() {
+const Subscription: React.FC = () => {
   const { t } = useTranslation('subscription');
   const { register, handleSubmit } = useForm<SubscriptionFormData>();
   const [submitted, setSubmitted] = useState(false);
@@ -122,3 +122,4 @@ export default function Subscription() {
   )
 }
 
+export default Subscription;

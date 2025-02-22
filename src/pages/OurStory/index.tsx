@@ -1,7 +1,8 @@
+import React from "react";
 import { PageWrapper, Title, Content} from "../../components/StyledComponets"
 import { useTranslation } from 'react-i18next';
 
-export default function OurStory() {
+const OurStory: React.FC = () => {
   const { t } = useTranslation('ourstory');
   return (
     <PageWrapper>
@@ -12,4 +13,6 @@ export default function OurStory() {
     </PageWrapper>
   )
 }
+
+export default OurStory;
 
