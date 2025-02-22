@@ -9,15 +9,15 @@ import { useForm } from 'react-hook-form';
 const TextWrapper = styled.div`
   flex: 1;
   padding-left: 20px;
-`;
 
-const Section = styled.div`
-  display: flex;
-  align-items: center;
+  @media (max-width: 768px) {
+    padding: 1rem;
+    text-align: center;
+  }
 `;
 
 const CenteredParagraph = styled.p`
-  text-align: center;
+  text-align: left;
 `;
 
 type SubscriptionFormData = {
@@ -55,11 +55,7 @@ const SubscriptionForm: React.FC = () => {
           <ThankyouMessage message={t('thankYouSubscriptionMessage')} />
         ) : (
           <>
-            <Section>
-              <TextWrapper>
-                <CenteredParagraph>{t('subscriptionFormDescription')}</CenteredParagraph>
-              </TextWrapper>
-            </Section>
+            <CenteredParagraph>{t('subscriptionFormDescription')}</CenteredParagraph>
             <FormSection>
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Label htmlFor="name">{t('name')}</Label>
