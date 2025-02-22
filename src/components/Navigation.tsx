@@ -1,7 +1,7 @@
 import React from 'react';
 import {  Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHome, FaBookOpen, FaBoxOpen, FaBell, FaShoppingCart, FaEnvelope} from 'react-icons/fa';
+import { FaShoppingCart} from 'react-icons/fa';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { useTranslation } from 'react-i18next';
 
@@ -33,7 +33,7 @@ const NavLinks = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -46,13 +46,6 @@ const StyledNavLink = styled(NavLink)` // Renamed to avoid conflict with Link
   &:hover {
     color: #b45309;
   }
-`;
-
-const IconTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
 `;
 
 const RightSection = styled.div`
@@ -118,34 +111,22 @@ const Navigation: React.FC = () => {
         <NavLinks>
           <li>
             <StyledNavLink to="/our-story">
-            <IconTextWrapper>
-              <FaBookOpen />
-              <span>{t('ourStory')}</span>
-              </IconTextWrapper>
+              {t('ourStory')}
             </StyledNavLink>
           </li>
           <li>
             <StyledNavLink to="/preorder">
-            <IconTextWrapper>
-              <FaBoxOpen />
-              <span>{t('preorder')}</span>
-              </IconTextWrapper>
+              {t('preorder')}
             </StyledNavLink>
           </li>
           <li>
             <StyledNavLink to="/subscription">
-            <IconTextWrapper>
-              <FaBell />
-              <span>{t('subscription')}</span>
-              </IconTextWrapper>
+              {t('subscription')}
             </StyledNavLink>
           </li>
           <li>
             <StyledNavLink to="/contact">
-              <IconTextWrapper>
-                <FaEnvelope />
-                <span>{t('contact')}</span>
-              </IconTextWrapper>
+                {t('contact')}
             </StyledNavLink>
           </li>
           </NavLinks>
