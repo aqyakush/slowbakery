@@ -8,12 +8,18 @@ import { useTranslation } from 'react-i18next';
 
 const NavigationWrapper = styled.nav`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background-color: #fef3c7;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   padding: 1.5rem 1rem;
   overflow: hidden;
+`;
+
+const TopSection = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `;
 
 const Logo = styled(Link)`
@@ -28,6 +34,14 @@ const LogoText = styled.span`
   font-weight: bold;
   color: #92400e;
 `
+
+const MiddleSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+`;
 
 const NavLinks = styled.ul`
   display: flex;
@@ -53,6 +67,9 @@ const RightSection = styled.div`
   align-items: center;
   gap: 20px;
   white-space: nowrap;
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
 `;
 
 const CartIconWrapper = styled.div`
@@ -105,9 +122,12 @@ const Navigation: React.FC = () => {
 
   return (
     <NavigationWrapper>
+      <TopSection>
         <Logo to="/">
-          <LogoText>Slow Bakery</LogoText>
+            <LogoText>Slow Bakery</LogoText>
         </Logo>
+      </TopSection>
+      <MiddleSection>
         <NavLinks>
           <li>
             <StyledNavLink to="/our-story">
@@ -130,30 +150,31 @@ const Navigation: React.FC = () => {
             </StyledNavLink>
           </li>
           </NavLinks>
-          <RightSection>
-          {items.length > 0 && (
-              <StyledNavLink to="/shopping-cart">
-              <CartIconWrapper>
-                <FaShoppingCart size={24} />
-                {items.length > 0 && <CartBubble>{items.length}</CartBubble>}
-              </CartIconWrapper>
-              </StyledNavLink>
-          )}
-          <LanguageSwitcher>
-            <LanguageButton
-              onClick={() => changeLanguage('fi')}
-              selected={i18n.language === 'fi'}
-            >
-              FI
-            </LanguageButton>
-            <span>/</span>
-            <LanguageButton
-              onClick={() => changeLanguage('en')}
-              selected={i18n.language === 'en'}
-            >
-              EN
-            </LanguageButton>
-          </LanguageSwitcher>
+      </MiddleSection>
+      <RightSection>
+        {items.length > 0 && (
+            <StyledNavLink to="/shopping-cart">
+            <CartIconWrapper>
+              <FaShoppingCart size={24} />
+              {items.length > 0 && <CartBubble>{items.length}</CartBubble>}
+            </CartIconWrapper>
+            </StyledNavLink>
+        )}
+        <LanguageSwitcher>
+          <LanguageButton
+            onClick={() => changeLanguage('fi')}
+            selected={i18n.language === 'fi'}
+          >
+            FI
+          </LanguageButton>
+          <span>/</span>
+          <LanguageButton
+            onClick={() => changeLanguage('en')}
+            selected={i18n.language === 'en'}
+          >
+            EN
+          </LanguageButton>
+        </LanguageSwitcher>
       </RightSection>
     </NavigationWrapper>
   );
