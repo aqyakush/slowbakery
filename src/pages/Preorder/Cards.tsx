@@ -61,7 +61,7 @@ const CardButton = styled.button<{ preordered: boolean }>`
   margin-top: 16px;
 `;
 
-const QuantityInput = styled.input`
+export const QuantityInput = styled.input`
   width: 50px;
   padding: 5px;
   margin-top: 16px;
