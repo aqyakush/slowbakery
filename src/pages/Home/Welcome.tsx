@@ -17,7 +17,6 @@ const ImageWrapper = styled.div`
     width: 100%;
     margin-bottom: 2rem;
   }
-`;
 
 const TextWrapper = styled.div`
   flex: 1;
@@ -48,6 +47,7 @@ const StyledParagraph = styled.p`
     font-size: 0.95rem;
   }
 `;
+
 
 const Welcome: React.FC = () => {
   const { t } = useTranslation('home');
