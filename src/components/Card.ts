@@ -8,7 +8,7 @@ export const CardWrapper = styled.div`
 `;
 
 export const Card = styled.div`
-  background-color: #FEE995;
+  background-color: ${(props) => props.theme.cardBackground};
   border-radius: 10px;
   padding: 20px;
   flex: 1;
@@ -20,7 +20,7 @@ export const CardButton = styled(Button)`
 `;
 
 export const ThankYouCard = styled.div`
-  background-color: #FEE995;
+  background-color: ${(props) => props.theme.cardBackground};
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -30,5 +30,5 @@ export const ThankYouCard = styled.div`
 
 export const ThankYouText = styled.p`
   font-weight: bold;
-  color: #92400e;
+  color: ${(props) => props.theme.textColor}
 `;

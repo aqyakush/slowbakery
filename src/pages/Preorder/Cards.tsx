@@ -51,8 +51,8 @@ const CardPrice = styled.p`
 `;
 
 const CardButton = styled.button<{ preordered: boolean }>`
-  background-color: ${({ preordered }) => (preordered ? '#008CBA' : '#4CAF50')};
-  color: white;
+  background-color: ${({ preordered, theme }) => (preordered ? theme.preorderedColor : theme.notPreorderedColor)};
+  color: ${({ theme }) => theme.buttonTextColor};
   padding: 10px 20px;
   border: none;
   border-radius: 4px;

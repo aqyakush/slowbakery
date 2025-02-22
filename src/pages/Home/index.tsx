@@ -23,7 +23,7 @@ const TextWrapper = styled.div`
 const SectionTitle = styled.h2`
   font-size: 2rem;
   font-weight: bold;
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 1rem;
 `
 

@@ -48,7 +48,7 @@ export const TotalRow = styled.div`
 
 const ShoppingCardLink = styled(NavLink)`
   display: inline-block;
-  background-color: #4CAF50;
+  background-color: ${(props) => props.theme.shoppingCardLink};
   color: white;
   padding: 10px 20px;
   border: none;
@@ -74,7 +74,7 @@ const PreorderedItemsCard: React.FC = () => {
   );
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
-
+  // FIXME: Move to the left and under the menu
   return (
     <AnimatePresence>
       <PreorderedCardWrapper
@@ -86,6 +86,7 @@ const PreorderedItemsCard: React.FC = () => {
       >
           <PreorderedTitle>{t('preorderedItemsTitle')}</PreorderedTitle>
           <HorizontalLine />
+          {/* FIXME: Add posibility to remove items from the preordered list and change amount */}
           {itemsText.map((item, index) => (
             <PreorderedItemP
               key={index}

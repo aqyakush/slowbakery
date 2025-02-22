@@ -28,7 +28,7 @@ const QuantityInput = styled.input`
 `;
 
 const RemoveIcon = styled(FaTrash)`
-  color: #ff4d4d;
+  color: ${(props) => props.theme.removeItem};
   cursor: pointer;
   font-size: 1.2rem;
   margin-left: 10px;

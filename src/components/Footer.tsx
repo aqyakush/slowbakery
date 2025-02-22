@@ -4,7 +4,7 @@ import { FaInstagram } from 'react-icons/fa';
 
 
 const FooterWrapper = styled.footer`
-  background-color: #fef3c7;
+  background-color: ${(props) => props.theme.footerBackground};
   padding: 2rem 0;
   margin-top: auto;
 `
@@ -19,7 +19,7 @@ const FooterContent = styled.div`
 `
 
 const Copyright = styled.p`
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
 `
 
 const SocialLinks = styled.div`
@@ -28,11 +28,11 @@ const SocialLinks = styled.div`
 `
 
 const SocialLink = styled.a`
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
   text-decoration: none;
   font-size: 2rem;
   &:hover {
-    color: #b45309;
+    color: ${(props) => props.theme.hoverTextColor};
   }
 `
 

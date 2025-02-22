@@ -18,7 +18,7 @@ export const FormWrapper = styled.div`
 export const Label = styled.label`
   margin-top: 10px;
   margin-bottom: 1px;
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
 `;
 
 export const Input = styled.input`

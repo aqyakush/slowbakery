@@ -8,7 +8,7 @@ import { useTranslation, Trans } from 'react-i18next';
 
 const Title = styled.h1`
   font-size: 2.5rem;
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
 `
 
 const Section = styled.div`

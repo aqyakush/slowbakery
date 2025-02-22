@@ -4,13 +4,15 @@ import styled from 'styled-components';
 import { FaShoppingCart} from 'react-icons/fa';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { useTranslation } from 'react-i18next';
+import ThemeSwitcher from './ThemeSwitcher';
+import LanguageSwitcher from './LanguageSwitcher';
 
 
 const NavigationWrapper = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fef3c7;
+  background-color: ${(props) => props.theme.footerBackground};
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   padding: 1.5rem 1rem;
   overflow: hidden;
@@ -32,7 +34,7 @@ const Logo = styled(Link)`
 const LogoText = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
 `
 
 const MiddleSection = styled.div`
@@ -55,10 +57,10 @@ const NavLinks = styled.ul`
 `
 
 const StyledNavLink = styled(NavLink)` // Renamed to avoid conflict with Link
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
   text-decoration: none;
   &:hover {
-    color: #b45309;
+    color: ${(props) => props.theme.hoverTextColor};
   }
 `;
 
@@ -89,36 +91,9 @@ const CartBubble = styled.div`
   font-size: 0.8rem;
 `;
 
-const LanguageSwitcher = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-const LanguageButton = styled.button<{ selected: boolean }>`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
-  color: ${({ selected }) => (selected ? '#92400e' : '#666')}; /* Match other colors */
-  transition: color 0.3s;
-
-  &:hover {
-    color: #92400e; /* Match hover color */
-  }
-
-  &:focus {
-    outline: none;
-  }
-`;
-
 const Navigation: React.FC = () => {
-  const { t, i18n } = useTranslation('navigation');
+  const { t } = useTranslation('navigation');
   const { items } = useShoppingCart();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
 
   return (
     <NavigationWrapper>
@@ -160,21 +135,8 @@ const Navigation: React.FC = () => {
             </CartIconWrapper>
             </StyledNavLink>
         )}
-        <LanguageSwitcher>
-          <LanguageButton
-            onClick={() => changeLanguage('fi')}
-            selected={i18n.language === 'fi'}
-          >
-            FI
-          </LanguageButton>
-          <span>/</span>
-          <LanguageButton
-            onClick={() => changeLanguage('en')}
-            selected={i18n.language === 'en'}
-          >
-            EN
-          </LanguageButton>
-        </LanguageSwitcher>
+        <LanguageSwitcher />
+        <ThemeSwitcher />
       </RightSection>
     </NavigationWrapper>
   );

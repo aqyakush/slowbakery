@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Title = styled.h1`
   font-size: 2.5rem;
-  color: #92400e;
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 1rem;
 `
 
@@ -14,12 +14,12 @@ export const PageWrapper = styled.div`
 
 export const Content = styled.div`
   font-size: 1.1rem;
-  color: #4b5563;
+  color: ${(props) => props.theme.content};
   line-height: 1.6;
 `
 
 export const Button = styled.button`
-  background-color: #92400e;
+  background-color: ${(props) => props.theme.textColor};
   color: white;
   border: none;
   border-radius: 5px;
@@ -28,6 +28,6 @@ export const Button = styled.button`
   margin-top: 10px;
 
   &:hover {
-    background-color: #b45309;
+    background-color: ${(props) => props.theme.hoverTextColor};
   }
 `;
