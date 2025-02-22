@@ -14,5 +14,6 @@
     "preorderWelcomeMessage": "Welcome to our preorder page. Here you can place orders for special items or upcoming events.",
     "preorderedItemsTitle": "Pre-ordered Items",
     "total": "Total",
-    "goToShoppingCart": "Go to shopping cart"
+    "goToShoppingCart": "Go to shopping cart",
+    "continueShopping": "Continue shopping"
 }

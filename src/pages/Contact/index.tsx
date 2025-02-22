@@ -10,6 +10,11 @@ import { onFormSubmit } from '../../components/GoogleForm/utils';
 const TextWrapper = styled.div`
   flex: 1;
   padding-left: 20px;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    text-align: center;
+  }
 `;
 
 type ContactFormData = {
@@ -45,11 +50,11 @@ const Contact: React.FC = () => {
             <FormSection>
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Label htmlFor="name">{t('name')}</Label>
-                <Input id="name" {...register('name', { required: true })} />
+                <Input id="name" {...register('name', { required: true })} placeholder={t('name')}/>
                 <Label htmlFor="email">{t('email')}</Label>
-                <Input id="email" type="email" {...register('email', { required: true })} />
+                <Input id="email" type="email" {...register('email', { required: true })} placeholder={t('email')}/>
                 <Label htmlFor="message">{t('message')}</Label>
-                <TextArea id="message" {...register('message', { required: true })} />
+                <TextArea id="message" {...register('message', { required: true })} placeholder={t('message')}/>
                 <SubmitButton type="submit">{t('submit')}</SubmitButton>
               </Form>
             </FormSection>

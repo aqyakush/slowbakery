@@ -14,5 +14,6 @@
     "preorderWelcomeMessage": "Tervetuloa ennakkotilaussivullemme. Täällä voit tehdä tilauksia erityisistä tuotteista tai tulevista tapahtumista.",
     "preorderedItemsTitle": "Ennakkotilatut tuotteet",
     "total": "Yhteensä",
-    "goToShoppingCart": "Siirry ostoskoriin"
+    "goToShoppingCart": "Siirry ostoskoriin",
+    "continueShopping": "Jatka ostoksia"
 }

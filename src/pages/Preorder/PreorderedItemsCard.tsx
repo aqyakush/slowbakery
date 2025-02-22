@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -62,18 +62,42 @@ const ShoppingCardLink = styled(NavLink)`
   text-align: center;
 `;
 
+const TextButton = styled.button`
+  background: none;
+  border: none;
+  color: ${props => props.theme.linkColor || '#0066cc'};
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
 
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
 
 const PreorderedItemsCard: React.FC = () => {
   const { items } = useShoppingCart();
   const { t } = useTranslation('preorder');
+  const [isVisible, setIsVisible] = useState(true);
   
   const itemComponents = items.map((item) => {
     return (
       <Item item={item} key={item.name} />
     );
-  } 
-  );
+  });
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, [items]);
+
+  if (!isVisible) return null;
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   return (
@@ -104,9 +128,14 @@ const PreorderedItemsCard: React.FC = () => {
           <span>{t('total')}:</span>
           <span>{totalPrice}€</span>
         </TotalRow>
-        <ShoppingCardLink to="/shopping-cart">
-          {t('goToShoppingCart')}
-        </ShoppingCardLink>
+        <ButtonsContainer>
+          <ShoppingCardLink to="/shopping-cart">
+            {t('goToShoppingCart')}
+          </ShoppingCardLink>
+          <TextButton onClick={() => setIsVisible(false)}>
+            {t('continueShopping')}
+          </TextButton>
+        </ButtonsContainer>
       </PreorderedCardWrapper>
     </AnimatePresence>
   );
