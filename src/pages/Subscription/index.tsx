@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
 import { useForm } from 'react-hook-form';
-import { PageWrapper } from '../../components/StyledComponets';
+import { PageWrapper, Title } from '../../components/StyledComponets';
 import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/GoogleForm/Form';
 import { useTranslation, Trans } from 'react-i18next';
 import ThankyouMessage from '../../components/ThankyouMessage';
 import { onFormSubmit } from '../../components/GoogleForm/utils';
-
-const Title = styled.h1`
-  font-size: 2.5rem;
-  color: ${(props) => props.theme.textColor};
-`
 
 const Section = styled.div`
   display: flex;
@@ -61,9 +56,9 @@ export default function Subscription() {
 
   return (
     <PageWrapper>
+      <Title>{t('subscriptionTitle')}</Title>
       <Section>
         <TextWrapper>
-          <Title>{t('subscriptionTitle')}</Title>
             <p>
               <Trans i18nKey="weeklyDelivery" components={{ strong: <strong /> }} ns="subscription"/>
             </p>

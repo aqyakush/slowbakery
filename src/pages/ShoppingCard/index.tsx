@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { PageWrapper, Title, Content } from '../../components/StyledComponets';
 import { Form, FormSection, Input, Label, SubmitButton } from '../../components/GoogleForm/Form';
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
