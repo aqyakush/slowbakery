@@ -3,8 +3,8 @@ import styled from "styled-components"
 import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
 import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
-import { ThankYouCard, ThankYouText } from '../../components/Card';
 import { useTranslation, Trans } from 'react-i18next';
+import ThankyouMessage from '../../components/ThankyouMessage';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -89,9 +89,7 @@ export default function Subscription() {
       <TextWrapper>
         <FormWrapper>
       {submitted ? (
-              <ThankYouCard>
-                <ThankYouText>{t('thankYouSubscriptionMessage')}</ThankYouText>
-              </ThankYouCard>
+               <ThankyouMessage message={t('thankYouSubscriptionMessage')} />
           ) : (
             <>
               <Section>

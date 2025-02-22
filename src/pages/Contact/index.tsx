@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
 import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
-import { ThankYouCard, ThankYouText } from '../../components/Card';
 import { useTranslation } from 'react-i18next';
+import ThankyouMessage from '../../components/ThankyouMessage';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -47,9 +47,7 @@ export default function Contact() {
     <PageWrapper>
       <Title>{t('contactUsTitle')}</Title>
       {submitted ? (
-        <ThankYouCard>
-          <ThankYouText>{t('thankYouMessage')}</ThankYouText>
-        </ThankYouCard>
+        <ThankyouMessage message={t('thankYouMessage')} />
       ) : (
         <TextWrapper>
             <FormWrapper>

@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { PageWrapper, Title, Content } from '../../components/StyledComponets';
 import { Form, FormSection, Input, Label, SubmitButton } from '../../components/Form';
-import { ThankYouCard, ThankYouText } from '../../components/Card';
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
 import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ThankyouMessage from '../../components/ThankyouMessage';
 
 const StyledLi = styled.li`
   display: flex;
@@ -103,9 +103,7 @@ const ShoppingCard = () => {
       <Content>
         <FormSection>
           {submitted ? (
-            <ThankYouCard>
-              <ThankYouText>{t('thankYouMessage')}</ThankYouText>
-            </ThankYouCard>
+             <ThankyouMessage message={t('thankYouMessage')} />
           ) : (
             <Form onSubmit={handleSubmit(onSubmit)}>
               <HorizontalLine/>
