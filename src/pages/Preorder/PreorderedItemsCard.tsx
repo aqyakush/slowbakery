@@ -8,12 +8,12 @@ import { useTranslation } from 'react-i18next';
 
 const PreorderedCardWrapper = styled(motion.div)`
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 130px;
+  right: 20px;
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
@@ -74,11 +74,10 @@ const PreorderedItemsCard: React.FC = () => {
   );
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
-  // FIXME: Move to the left and under the menu
   return (
     <AnimatePresence>
       <PreorderedCardWrapper
-        initial={{ x: '-100%' }}
+        initial={{ x: '100%' }}
         animate={{ x: 0 }}
         transition={{ type: 'spring', duration: 1, bounce: 0.5
       }}
