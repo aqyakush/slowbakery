@@ -17,6 +17,7 @@ const ImageWrapper = styled.div`
     width: 100%;
     margin-bottom: 2rem;
   }
+`;
 
 const TextWrapper = styled.div`
   flex: 1;
