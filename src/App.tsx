@@ -28,20 +28,20 @@ const App: React.FC = () => {
     <ThemeProvider>
       <ShoppingCartProvider>
         <Router>
-            <AppWrapper>
-              <Navigation />
-              <Main>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/preorder" element={<Preorder />} />
-                  <Route path="/subscription" element={<Subscription />} />
-                  <Route path="/our-story" element={<OurStory />} />
-                  <Route path="*" element={<Home />} />
-                  <Route path="/shopping-cart" element={<ShoppingCard />} />
-                  <Route path="/contact" element={<Contact />} />
-                </Routes>
-              </Main>
-              <Footer />
+          <AppWrapper>
+            <Navigation />
+            <Main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/preorder" element={<Preorder />} />
+                <Route path="/subscription" element={<Subscription />} />
+                <Route path="/our-story" element={<OurStory />} />
+                <Route path="*" element={<Home />} />
+                <Route path="/shopping-cart" element={<ShoppingCard />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Main>
+            <Footer />
           </AppWrapper>
         </Router>
       </ShoppingCartProvider>

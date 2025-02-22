@@ -20,11 +20,11 @@ type ThankyouMessageProps = {
 }
 
 const ThankyouMessage: React.FC<ThankyouMessageProps> = ({ message }) => {
-    return (
-        <ThankYouCard>
-            <ThankYouText>{message}</ThankYouText>
-        </ThankYouCard>
-    );
+  return (
+    <ThankYouCard>
+      <ThankYouText>{message}</ThankYouText>
+    </ThankYouCard>
+  );
 };
 
 export default ThankyouMessage;

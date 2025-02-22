@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { FaShoppingCart} from 'react-icons/fa';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { useTranslation } from 'react-i18next';
-import ThemeSwitcher from './ThemeSwitcher';
 import LanguageSwitcher from './LanguageSwitcher';
 
 
@@ -99,7 +98,7 @@ const Navigation: React.FC = () => {
     <NavigationWrapper>
       <TopSection>
         <Logo to="/">
-            <LogoText>Slow Bakery</LogoText>
+          <LogoText>Slow Bakery</LogoText>
         </Logo>
       </TopSection>
       <MiddleSection>
@@ -121,19 +120,19 @@ const Navigation: React.FC = () => {
           </li>
           <li>
             <StyledNavLink to="/contact">
-                {t('contact')}
+              {t('contact')}
             </StyledNavLink>
           </li>
-          </NavLinks>
+        </NavLinks>
       </MiddleSection>
       <RightSection>
         {items.length > 0 && (
-            <StyledNavLink to="/shopping-cart">
+          <StyledNavLink to="/shopping-cart">
             <CartIconWrapper>
               <FaShoppingCart size={24} />
               {items.length > 0 && <CartBubble>{items.length}</CartBubble>}
             </CartIconWrapper>
-            </StyledNavLink>
+          </StyledNavLink>
         )}
         <LanguageSwitcher />
         {/* FIXME: fix dark theme colors */}

@@ -26,36 +26,36 @@ const LanguageButton = styled.button<{ selected: boolean }>`
 `;
 
 const LanguageSwitcher: React.FC = () => {
-    const { i18n } = useTranslation('navigation');
-    const changeLanguage = (lng: string) => {
-        i18n.changeLanguage(lng);
-        localStorage.setItem('language', lng);
-      };
+  const { i18n } = useTranslation('navigation');
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng);
+  };
     
-    useEffect(() => {
-        const storedLanguage = localStorage.getItem('language');
-        if (storedLanguage) {
-            i18n.changeLanguage(storedLanguage);
-        }
-    }, [i18n]);
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage) {
+      i18n.changeLanguage(storedLanguage);
+    }
+  }, [i18n]);
 
-    return (
-        <LanguageDiv>
-          <LanguageButton
-            onClick={() => changeLanguage('fi')}
-            selected={i18n.language === 'fi'}
-          >
+  return (
+    <LanguageDiv>
+      <LanguageButton
+        onClick={() => changeLanguage('fi')}
+        selected={i18n.language === 'fi'}
+      >
             FI
-          </LanguageButton>
-          <span>/</span>
-          <LanguageButton
-            onClick={() => changeLanguage('en')}
-            selected={i18n.language === 'en'}
-          >
+      </LanguageButton>
+      <span>/</span>
+      <LanguageButton
+        onClick={() => changeLanguage('en')}
+        selected={i18n.language === 'en'}
+      >
             EN
-          </LanguageButton>
-        </LanguageDiv>
-    );
+      </LanguageButton>
+    </LanguageDiv>
+  );
 };
 
 export default LanguageSwitcher;

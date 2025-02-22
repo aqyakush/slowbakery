@@ -7,6 +7,7 @@ import Backend from 'i18next-http-backend';
 // have a look at the Quick start guide 
 // for passing in lng and translations on init
 
+// eslint-disable-next-line no-undef
 const isProduction = process.env.NODE_ENV === 'production';
 
 i18n
@@ -29,9 +30,9 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
     },
     backend: {
-        loadPath: isProduction
-            ? '/slowbakery/locales/{{lng}}/{{ns}}.json' // Path for GitHub Pages
-            : '/locales/{{lng}}/{{ns}}.json', // Path for local development
+      loadPath: isProduction
+        ? '/slowbakery/locales/{{lng}}/{{ns}}.json' // Path for GitHub Pages
+        : '/locales/{{lng}}/{{ns}}.json', // Path for local development
     },
   });
 

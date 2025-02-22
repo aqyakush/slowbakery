@@ -18,19 +18,19 @@ const lightTheme = {
 };
 
 const darkTheme = {
-    name: 'dark',
-    background: '#121212', // Dark background
-    cardBackground: '#1E1E1E', // Slightly lighter background for cards
-    textColor: '#E0E0E0', // Light text color for readability
-    hoverTextColor: '#FFB74D', // Highlight color for hover states
-    footerBackground: '#1E1E1E', // Match card background for consistency
-    content: '#B0BEC5', // Light grey for content text
-    color: '#FFFFFF', // White color for general text
-    removeItem: '#FF5252', // Bright red for remove item button
-    shoppingCardLink: '#81C784', // Light green for shopping card link
-    preorderedColor: '#64B5F6', // Light blue for preordered button
-    notPreorderedColor: '#81C784', // Light green for not preordered button
-    buttonTextColor: '#FFFFFF',
+  name: 'dark',
+  background: '#121212', // Dark background
+  cardBackground: '#1E1E1E', // Slightly lighter background for cards
+  textColor: '#E0E0E0', // Light text color for readability
+  hoverTextColor: '#FFB74D', // Highlight color for hover states
+  footerBackground: '#1E1E1E', // Match card background for consistency
+  content: '#B0BEC5', // Light grey for content text
+  color: '#FFFFFF', // White color for general text
+  removeItem: '#FF5252', // Bright red for remove item button
+  shoppingCardLink: '#81C784', // Light green for shopping card link
+  preorderedColor: '#64B5F6', // Light blue for preordered button
+  notPreorderedColor: '#81C784', // Light green for not preordered button
+  buttonTextColor: '#FFFFFF',
 };
 
 const ThemeContext = createContext({

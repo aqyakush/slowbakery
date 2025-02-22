@@ -97,32 +97,32 @@ const ShoppingCard: React.FC = () => {
       <Content>
         <FormSection>
           {submitted ? (
-             <ThankyouMessage message={t('thankYouMessage')} />
+            <ThankyouMessage message={t('thankYouMessage')} />
           ) : (
             <Form onSubmit={handleSubmit(onSubmit)}>
               <HorizontalLine/>
               <ul>
-              {items.map((item) => {
-                const totalPrice = (item.price * item.quantity).toFixed(2);
-                return ((
-                  <StyledLi key={item.name}>
-                  <ItemDetails>
-                    <ItemName>{t(item.name, { ns: 'preorder' })}</ItemName>
-                    <QuantityInput
-                      type="number"
-                      value={item.quantity}
-                      min="1"
-                      onChange={(e) => handleQuantityChange(item.name, Number(e.target.value))}
-                    />
-                  </ItemDetails>
-                  <div>
-                    <span>€{totalPrice}</span>
-                    <RemoveIcon onClick={() => removeItem(item.name)} />
-                  </div>
-                  <Input type="hidden" {...register(`items.${item.name}`)} value={item.name} />
-                </StyledLi>
-                ));
-              })}
+                {items.map((item) => {
+                  const totalPrice = (item.price * item.quantity).toFixed(2);
+                  return ((
+                    <StyledLi key={item.name}>
+                      <ItemDetails>
+                        <ItemName>{t(item.name, { ns: 'preorder' })}</ItemName>
+                        <QuantityInput
+                          type="number"
+                          value={item.quantity}
+                          min="1"
+                          onChange={(e) => handleQuantityChange(item.name, Number(e.target.value))}
+                        />
+                      </ItemDetails>
+                      <div>
+                        <span>€{totalPrice}</span>
+                        <RemoveIcon onClick={() => removeItem(item.name)} />
+                      </div>
+                      <Input type="hidden" {...register(`items.${item.name}`)} value={item.name} />
+                    </StyledLi>
+                  ));
+                })}
               </ul>
               <HorizontalLine/>
               <TotalRow>

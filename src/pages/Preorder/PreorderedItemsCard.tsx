@@ -133,31 +133,31 @@ const PreorderedItemsCard: React.FC = () => {
         initial={{ x: '100%' }}
         animate={{ x: 0 }}
         transition={{ type: 'spring', duration: 1, bounce: 0.5
-      }}
+        }}
         layout
       >
-          <PreorderedTitle>{t('preorderedItemsTitle')}</PreorderedTitle>
-          <HorizontalLine />
-          {itemsText.map((item, index) => (
-            <PreorderedItemP
-              key={index}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5 }}
-              layout
-            >
-              {item}
-            </PreorderedItemP>
-          ))}
-          <HorizontalLine />
-          <TotalRow>
-            <span>{t('total')}:</span>
-            <span>{totalPrice}€</span>
-          </TotalRow>
-          <ShoppingCardLink to="/shopping-cart">
-            {t('goToShoppingCart')}
-          </ShoppingCardLink>
+        <PreorderedTitle>{t('preorderedItemsTitle')}</PreorderedTitle>
+        <HorizontalLine />
+        {itemsText.map((item, index) => (
+          <PreorderedItemP
+            key={index}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5 }}
+            layout
+          >
+            {item}
+          </PreorderedItemP>
+        ))}
+        <HorizontalLine />
+        <TotalRow>
+          <span>{t('total')}:</span>
+          <span>{totalPrice}€</span>
+        </TotalRow>
+        <ShoppingCardLink to="/shopping-cart">
+          {t('goToShoppingCart')}
+        </ShoppingCardLink>
       </PreorderedCardWrapper>
     </AnimatePresence>
   );

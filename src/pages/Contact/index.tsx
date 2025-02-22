@@ -41,19 +41,19 @@ const Contact: React.FC = () => {
         <ThankyouMessage message={t('thankYouMessage')} />
       ) : (
         <TextWrapper>
-            <FormWrapper>
-                <FormSection>
-                    <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Label htmlFor="name">{t('name')}</Label>
-                        <Input id="name" {...register('name', { required: true })} />
-                        <Label htmlFor="email">{t('email')}</Label>
-                        <Input id="email" type="email" {...register('email', { required: true })} />
-                        <Label htmlFor="message">{t('message')}</Label>
-                        <TextArea id="message" {...register('message', { required: true })} />
-                        <SubmitButton type="submit">{t('submit')}</SubmitButton>
-                    </Form>
-                </FormSection>
-            </FormWrapper>
+          <FormWrapper>
+            <FormSection>
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <Label htmlFor="name">{t('name')}</Label>
+                <Input id="name" {...register('name', { required: true })} />
+                <Label htmlFor="email">{t('email')}</Label>
+                <Input id="email" type="email" {...register('email', { required: true })} />
+                <Label htmlFor="message">{t('message')}</Label>
+                <TextArea id="message" {...register('message', { required: true })} />
+                <SubmitButton type="submit">{t('submit')}</SubmitButton>
+              </Form>
+            </FormSection>
+          </FormWrapper>
         </TextWrapper>
         
       )}

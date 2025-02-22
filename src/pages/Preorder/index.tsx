@@ -42,7 +42,7 @@ const Preorder: React.FC = () => {
             onPreorder={(quantity: number) => handlePreorder(item.title, item.price, quantity)}
           />
         ))}
-          {items.length > 0 && <PreorderedItemsCard/>}
+        {items.length > 0 && <PreorderedItemsCard/>}
       </Content>
     </PageWrapper>
   );

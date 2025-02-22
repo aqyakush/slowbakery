@@ -102,14 +102,14 @@ const Card: React.FC<CardProps> = ({ title, image, description, ingredients, pri
       <CardIngredients>{t(ingredients)}</CardIngredients>
       <CardPrice>€{price.toFixed(2)}</CardPrice>
       <QuantityInput
-          type="number"
-          value={quantity}
-          min="1"
-          onChange={handleQuantityChange}
-          disabled={preordered}
+        type="number"
+        value={quantity}
+        min="1"
+        onChange={handleQuantityChange}
+        disabled={preordered}
       />
       <CardButton preordered={preordered} onClick={handlePreorder}>
-          {preordered ? t('removeFromOrder') : t('addToOrder')}
+        {preordered ? t('removeFromOrder') : t('addToOrder')}
       </CardButton>
     </CardContent>
   </CardWrapper>);

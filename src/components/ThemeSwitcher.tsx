@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import { useTheme } from '../context/ThemeContext';
@@ -39,16 +39,16 @@ const Input = styled.input`
 `;
 
 const ThemeSwitcher: React.FC = () => {
-    const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
-    return (
-        <ToggleSwitch>
-          <Input type="checkbox" onChange={toggleTheme} checked={theme.name === 'dark'}/>
-          <Slider>
-            {theme.name === 'light' ? 'Dark' : 'Light'}
-          </Slider>
-        </ToggleSwitch>
-    );
+  return (
+    <ToggleSwitch>
+      <Input type="checkbox" onChange={toggleTheme} checked={theme.name === 'dark'}/>
+      <Slider>
+        {theme.name === 'light' ? 'Dark' : 'Light'}
+      </Slider>
+    </ToggleSwitch>
+  );
 };
 
 export default ThemeSwitcher;
