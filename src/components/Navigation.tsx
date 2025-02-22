@@ -136,7 +136,8 @@ const Navigation: React.FC = () => {
             </StyledNavLink>
         )}
         <LanguageSwitcher />
-        <ThemeSwitcher />
+        {/* FIXME: fix dark theme colors */}
+        {/* <ThemeSwitcher /> */}
       </RightSection>
     </NavigationWrapper>
   );

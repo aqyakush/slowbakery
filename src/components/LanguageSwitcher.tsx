@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { styled } from 'styled-components';
 
@@ -26,10 +26,18 @@ const LanguageButton = styled.button<{ selected: boolean }>`
 `;
 
 const LanguageSwitcher: React.FC = () => {
-    const { t, i18n } = useTranslation('navigation');
+    const { i18n } = useTranslation('navigation');
     const changeLanguage = (lng: string) => {
         i18n.changeLanguage(lng);
+        localStorage.setItem('language', lng);
       };
+    
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+            i18n.changeLanguage(storedLanguage);
+        }
+    }, [i18n]);
 
     return (
         <LanguageDiv>

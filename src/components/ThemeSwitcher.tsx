@@ -43,7 +43,7 @@ const ThemeSwitcher: React.FC = () => {
 
     return (
         <ToggleSwitch>
-          <Input type="checkbox" onChange={toggleTheme} />
+          <Input type="checkbox" onChange={toggleTheme} checked={theme.name === 'dark'}/>
           <Slider>
             {theme.name === 'light' ? 'Dark' : 'Light'}
           </Slider>

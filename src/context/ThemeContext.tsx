@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 const lightTheme = {
@@ -44,8 +44,17 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(lightTheme);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === lightTheme ? darkTheme : lightTheme));
+    const newTheme = theme.name === 'light' ? darkTheme : lightTheme;
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme.name); 
   };
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setTheme(storedTheme === 'light' ? lightTheme : darkTheme);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
