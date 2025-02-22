@@ -51,13 +51,13 @@ interface FormData {
 
 const ShoppingCard = () => {
   const { t } = useTranslation(['shoppingcard', 'preorder']);
-  const { items, removeItem, updateItemQuantity } = useShoppingCart();
+  const { items, removeItem, updateItemQuantity, clearCart } = useShoppingCart();
   const { register, handleSubmit } = useForm<FormData>();
   const [submitted, setSubmitted] = React.useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (items.length === 0) {
+    if (items.length === 0 && !submitted) {
       navigate('/preorder');
     }
   }, [items, navigate]);
@@ -88,7 +88,7 @@ const ShoppingCard = () => {
     }).then(() => {
       console.log('Form submitted');
       setSubmitted(true);
-      // FIXME: when clicke the buble in shopping card should dissapear
+      clearCart();
     }).catch((error) => {
       console.error('Error submitting form:', error);
     });
