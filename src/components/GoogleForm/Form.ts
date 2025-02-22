@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Button } from "./StyledComponets";
+import { Button } from "../StyledComponets";
 
 export const FormSection = styled.section`
   margin-bottom: 1rem;  

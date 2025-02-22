@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
-import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
+import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/GoogleForm/Form';
 import { useTranslation } from 'react-i18next';
 import ThankyouMessage from '../../components/ThankyouMessage';
+import { onFormSubmit } from '../../components/GoogleForm/utils';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -16,31 +17,27 @@ const TextWrapper = styled.div`
   padding-left: 20px;
 `;
 
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export default function Contact() {
   const { t } = useTranslation('contact');
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<ContactFormData>();
   const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: ContactFormData) => {
     setSubmitted(true);
 
-    // Example: Send data to Google Forms
     const formUrl = 'https://docs.google.com/forms/d/1JEPvg0ofPA2tOQGj5dloHb2dXdii6NTmpyKDgZSCpEM/formResponse';
-    const formData = new FormData();
-    formData.append('entry.1414558029', data.name);
-    formData.append('entry.2001958713', data.email);
-    formData.append('entry.1553879402', data.message);
-
-    fetch(formUrl, {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors'
-    }).then(() => {
-      console.log('Form successfully submitted');
-    }).catch((error) => {
-      console.error('Error submitting form:', error);
-    });
+    const formData = {
+      'entry.1414558029': data.name,
+      'entry.2001958713': data.email,
+      'entry.1553879402': data.message
+    }
+    onFormSubmit(formData, formUrl)
   };
 
   return (

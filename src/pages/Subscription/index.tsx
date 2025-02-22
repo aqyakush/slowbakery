@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled from "styled-components"
 import { useForm } from 'react-hook-form';
 import { PageWrapper } from '../../components/StyledComponets';
-import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/Form';
+import { Form, FormSection, FormWrapper, Input, Label, SubmitButton, TextArea } from '../../components/GoogleForm/Form';
 import { useTranslation, Trans } from 'react-i18next';
 import ThankyouMessage from '../../components/ThankyouMessage';
+import { onFormSubmit } from '../../components/GoogleForm/utils';
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -29,35 +30,33 @@ const CenteredParagraph = styled.p`
   text-align: center;
 `;
 
+type SubscriptionFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  dietaryRestrictions: string;
+}
+
 
 export default function Subscription() {
   const { t } = useTranslation('subscription');
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<SubscriptionFormData>();
   const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit = (data: any) => {
-    // Handle form submission
-    console.log(data);
+  const onSubmit = (data: SubscriptionFormData) => {
     setSubmitted(true);
 
-    // Example: Send data to Google Forms
     const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSccCeCBJiKT46qlXp3PVdaXn6wTzGL4WEdJVX1XTSFg7gO7ZQ/formResponse';
-    const formData = new FormData();
-    formData.append('entry.2046355118', data.name);
-    formData.append('entry.1678340185', data.email);
-    formData.append('entry.548497100', data.phone);
-    formData.append('entry.1712509764', data.address);
-    formData.append('entry.6677889900', data.dietaryRestrictions);
+    const formData = {
+      'entry.2046355118': data.name,
+      'entry.1678340185': data.email,
+      'entry.548497100': data.phone,
+      'entry.1712509764': data.address,
+      'entry.6677889900': data.dietaryRestrictions
+    }
 
-    fetch(formUrl, {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors',
-    }).then(() => {
-      console.log('Form submitted');
-    }).catch((error) => {
-      console.error('Error submitting form:', error);
-    });
+    onFormSubmit(formData, formUrl)
   };
 
   return (
@@ -111,9 +110,11 @@ export default function Subscription() {
                   <Label htmlFor="address">{t('address')}</Label>
                   <Input id="address" {...register('address')} placeholder={t('address')} required />
                   
+                  {/* FIXME: modify dietaryRestrictions to accept only known fields */}
                   <Label htmlFor="dietaryRestrictions">{t('dietaryRestrictions')}</Label>
                   <TextArea id="dietaryRestrictions" {...register('dietaryRestrictions')} placeholder={t('dietaryRestrictions')} rows={4} />
                   
+                  {/* FIXME: add additionla info fields */}
                   <SubmitButton type="submit">{t('subscribe')}</SubmitButton>
                 </Form>
               </FormSection>

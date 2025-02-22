@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { PageWrapper, Title, Content } from '../../components/StyledComponets';
-import { Form, FormSection, Input, Label, SubmitButton } from '../../components/Form';
+import { Form, FormSection, Input, Label, SubmitButton } from '../../components/GoogleForm/Form';
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
 import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
@@ -9,6 +9,7 @@ import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ThankyouMessage from '../../components/ThankyouMessage';
+import { onFormSubmit } from '../../components/GoogleForm/utils';
 
 const StyledLi = styled.li`
   display: flex;
@@ -44,15 +45,15 @@ const ItemName = styled.span`
   margin-right: 10px;
 `;
 
-interface FormData {
+type ShoppingCardFormData = {
   email: string;
-  items: { [key: string]: boolean };
+  items: { [key: string]: string };
 }
 
 const ShoppingCard = () => {
   const { t } = useTranslation(['shoppingcard', 'preorder']);
   const { items, removeItem, updateItemQuantity, clearCart } = useShoppingCart();
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<ShoppingCardFormData>();
   const [submitted, setSubmitted] = React.useState(false);
   const navigate = useNavigate();
 
@@ -66,32 +67,25 @@ const ShoppingCard = () => {
     updateItemQuantity(name, quantity);
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit = (data: ShoppingCardFormData) => {
     const formUrl = 'https://docs.google.com/forms/d/1PfSTT692aHNyLe_F9tPLU8p6c_hE6jaTJhorWyXElQ4/formResponse';
-    const formData = new FormData();
+    let formData: { [key: string]: string } = {
+      'entry.1873621867': data.email
+    };
     
-    formData.append('entry.1873621867', data.email);
     items.forEach((item) => {
       if (item.name === 'Classic Sourdough') {
-        formData.append('entry.382611075', `${item.name} ${item.quantity}pcs`);
+        formData = {...formData, 'entry.382611075': `${item.name} ${item.quantity}pcs`}
       } else if (item.name === 'Sunflower and Sesame Bread') {
-        formData.append('entry.824005279', `${item.name} ${item.quantity}pcs`);
+        formData = {...formData, 'entry.824005279': `${item.name} ${item.quantity}pcs`}
       } else if (item.name === 'Olive Bread') {
-        formData.append('entry.1490827537', `${item.name} ${item.quantity}pcs`);
+        formData = {...formData, 'entry.1490827537': `${item.name} ${item.quantity}pcs`}
       }
     });
 
-    fetch(formUrl, {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors',
-    }).then(() => {
-      console.log('Form submitted');
-      setSubmitted(true);
-      clearCart();
-    }).catch((error) => {
-      console.error('Error submitting form:', error);
-    });
+    onFormSubmit(formData, formUrl)
+    clearCart();
+    setSubmitted(true);
   };
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
