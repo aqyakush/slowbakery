@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import { useTranslation } from 'react-i18next';
+import { BreadDataItem } from '../../data/bread';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -71,16 +72,13 @@ export const QuantityInput = styled.input`
 `;
 
 interface CardProps {
-  title: string;
-  image: string;
-  description: string;
-  ingredients: string;
-  price: number;
+  item: BreadDataItem;
   preordered: boolean;
   onPreorder: (arg0: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ title, image, description, ingredients, price, preordered, onPreorder }) => {
+const Card: React.FC<CardProps> = ({ item, preordered, onPreorder, ...props }) => {
+  const { title, image, description, ingredients, price } = item;
   const { t } = useTranslation('preorder');
   const { items } = useShoppingCart();
   const [quantity, setQuantity] = useState(items.find((item) => item.name === title)?.quantity || 1);
@@ -94,25 +92,26 @@ const Card: React.FC<CardProps> = ({ title, image, description, ingredients, pri
     onPreorder(quantity);
   };
   
-  return (<CardWrapper>
-    <CardImage src={image} alt={title} />
-    <CardContent>
-      <CardTitle>{t(title)}</CardTitle>
-      <CardDescription>{t(description)}</CardDescription>
-      <CardIngredients>{t(ingredients)}</CardIngredients>
-      <CardPrice>€{price.toFixed(2)}</CardPrice>
-      <QuantityInput
-        type="number"
-        value={quantity}
-        min="1"
-        onChange={handleQuantityChange}
-        disabled={preordered}
-      />
-      <CardButton preordered={preordered} onClick={handlePreorder}>
-        {preordered ? t('removeFromOrder') : t('addToOrder')}
-      </CardButton>
-    </CardContent>
-  </CardWrapper>);
+  return (
+    <CardWrapper {...props}>
+      <CardImage src={image} alt={title} />
+      <CardContent>
+        <CardTitle>{t(title)}</CardTitle>
+        <CardDescription>{t(description)}</CardDescription>
+        <CardIngredients>{t(ingredients)}</CardIngredients>
+        <CardPrice>€{price.toFixed(2)}</CardPrice>
+        <QuantityInput
+          type="number"
+          value={quantity}
+          min="1"
+          onChange={handleQuantityChange}
+          disabled={preordered}
+        />
+        <CardButton preordered={preordered} onClick={handlePreorder}>
+          {preordered ? t('removeFromOrder') : t('addToOrder')}
+        </CardButton>
+      </CardContent>
+    </CardWrapper>);
 };
 
 export default Card;

@@ -5,11 +5,11 @@ import { Form, FormSection, Input, Label, SubmitButton } from '../../components/
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
 import styled from 'styled-components';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
-import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ThankyouMessage from '../../components/ThankyouMessage';
 import { onFormSubmit } from '../../components/GoogleForm/utils';
+import Item from './item';
 
 const StyledLi = styled.li`
   display: flex;
@@ -20,30 +20,7 @@ const StyledLi = styled.li`
   margin: 8px 0;
 `;
 
-const QuantityInput = styled.input`
-  width: 50px;
-  padding: 5px;
-  margin-right: 10px;
-  font-size: 1rem;
-  text-align: center;
-`;
 
-const RemoveIcon = styled(FaTrash)`
-  color: ${(props) => props.theme.removeItem};
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-left: 10px;
-`;
-
-const ItemDetails = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ItemName = styled.span`
-  width: 300px;
-  margin-right: 10px;
-`;
 
 type ShoppingCardFormData = {
   email: string;
@@ -52,7 +29,7 @@ type ShoppingCardFormData = {
 
 const ShoppingCard: React.FC = () => {
   const { t } = useTranslation(['shoppingcard', 'preorder']);
-  const { items, removeItem, updateItemQuantity, clearCart } = useShoppingCart();
+  const { items, clearCart } = useShoppingCart();
   const { register, handleSubmit } = useForm<ShoppingCardFormData>();
   const [submitted, setSubmitted] = React.useState(false);
   const navigate = useNavigate();
@@ -62,10 +39,6 @@ const ShoppingCard: React.FC = () => {
       navigate('/preorder');
     }
   }, [items, navigate]);
-
-  const handleQuantityChange = (name: string, quantity: number) => {
-    updateItemQuantity(name, quantity);
-  };
 
   const onSubmit = (data: ShoppingCardFormData) => {
     const formUrl = 'https://docs.google.com/forms/d/1PfSTT692aHNyLe_F9tPLU8p6c_hE6jaTJhorWyXElQ4/formResponse';
@@ -103,22 +76,9 @@ const ShoppingCard: React.FC = () => {
               <HorizontalLine/>
               <ul>
                 {items.map((item) => {
-                  const totalPrice = (item.price * item.quantity).toFixed(2);
                   return ((
                     <StyledLi key={item.name}>
-                      <ItemDetails>
-                        <ItemName>{t(item.name, { ns: 'preorder' })}</ItemName>
-                        <QuantityInput
-                          type="number"
-                          value={item.quantity}
-                          min="1"
-                          onChange={(e) => handleQuantityChange(item.name, Number(e.target.value))}
-                        />
-                      </ItemDetails>
-                      <div>
-                        <span>€{totalPrice}</span>
-                        <RemoveIcon onClick={() => removeItem(item.name)} />
-                      </div>
+                      <Item item={item} key={item.name}/>
                       <Input type="hidden" {...register(`items.${item.name}`)} value={item.name} />
                     </StyledLi>
                   ));

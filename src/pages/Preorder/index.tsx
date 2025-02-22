@@ -1,10 +1,10 @@
 import React from 'react';
 import { Content, PageWrapper, Title } from '../../components/StyledComponets';
 import Card from './Cards';
-import PreorderedItemsCard from './PreorderedItemsCard';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import { useTranslation } from 'react-i18next';
 import { BREAD_ITEMS } from '../../data/bread';
+import PreorderedItemsCard from './PreorderedItemsCard';
 
 export type PreorderedItem = { 
   name: string; 
@@ -33,11 +33,7 @@ const Preorder: React.FC = () => {
         {BREAD_ITEMS.map((item) => (
           <Card
             key={item.title}
-            title={item.title}
-            image={item.image}
-            description={item.description}
-            ingredients={item.ingredients}
-            price={item.price}
+            item={item}
             preordered={items.some((preorderedItem) => preorderedItem.name === item.title)}
             onPreorder={(quantity: number) => handlePreorder(item.title, item.price, quantity)}
           />

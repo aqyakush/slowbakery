@@ -1,4 +1,4 @@
-interface BreadItem {
+export type BreadDataItem = {
     title: string;
     image: string;
     description: string;
@@ -6,7 +6,7 @@ interface BreadItem {
     price: number;
   }
   
-export const BREAD_ITEMS: BreadItem[] = [
+export const BREAD_ITEMS: BreadDataItem[] = [
   {
     title: 'Classic Sourdough',
     image: 'https://www.theperfectloaf.com/wp-content/uploads/2015/12/theperfectloaf-mybestsourdoughrecipe-title-1.jpg',

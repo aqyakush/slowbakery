@@ -13,8 +13,12 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     rules: {
-      indent: ["error", 2], // Enforces 2-space indentation
-      // Add other rules here
+      indent: ["error", 2],
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
   },
 ];
