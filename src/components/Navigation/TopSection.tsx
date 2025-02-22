@@ -11,13 +11,8 @@ const Section = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 1rem;
-
-  .desktop-language {
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
+  padding: 1rem;
+  position: relative
 `;
 
 const HamburgerButton = styled.button`
@@ -27,6 +22,9 @@ const HamburgerButton = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};
+  position: absolute;
+  left: 1rem;
+  z-index: 1;
   
   @media (max-width: 768px) {
     display: block;
@@ -38,7 +36,12 @@ const Logo = styled(Link)`
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-`
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 const LogoText = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
@@ -52,7 +55,7 @@ const RightSection = styled.div`
   white-space: nowrap;
   position: absolute;
   right: 1rem;
-  top: 1.5rem;
+  z-index: 1;
 `;
 
 const CartIconWrapper = styled.div`
@@ -70,6 +73,12 @@ const CartBubble = styled.div`
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 0.8rem;
+`;
+
+const DesktopLanguageWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 type TopSectionProps = {
@@ -95,9 +104,9 @@ const TopSection: React.FC<TopSectionProps> = ({toggleMenu}) => {
             </CartIconWrapper>
           </StyledNavLink>
         )}
-        <div className="desktop-language">
+        <DesktopLanguageWrapper>
           <LanguageSwitcher />
-        </div>
+        </DesktopLanguageWrapper>
       </RightSection>
     </Section>
   );
