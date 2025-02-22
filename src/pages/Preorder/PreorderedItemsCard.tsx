@@ -6,24 +6,41 @@ import { useTranslation } from 'react-i18next';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import Item from '../ShoppingCard/item';
 
-
-
 const PreorderedCardWrapper = styled(motion.div)`
   position: fixed;
-  top: 130px;
-  right: 20px;
   width: 350px;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  /* Desktop positioning */
+  @media (min-width: 769px) {
+    top: 130px;
+    right: 20px;
+  }
+
+  /* Mobile positioning */
+  @media (max-width: 768px) {
+    width: 80%;
+    left: 5%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
 `;
 
 const PreorderedTitle = styled.h2`
   font-size: 1.5rem;
   color: #333;
   margin: 0 0 16px 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const PreorderedItemP = styled(motion.p)`
@@ -32,6 +49,10 @@ const PreorderedItemP = styled(motion.p)`
   font-size: 1rem;
   color: #666;
   margin: 8px 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const HorizontalLine = styled.hr`
@@ -60,6 +81,11 @@ const ShoppingCardLink = styled(NavLink)`
   margin-top: 16px;
   text-decoration: none;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
 `;
 
 const TextButton = styled.button`
