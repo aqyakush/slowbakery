@@ -30,9 +30,10 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
     },
     backend: {
-      loadPath: isProduction
-        ? '/slowbakery/locales/{{lng}}/{{ns}}.json' // Path for GitHub Pages
-        : '/locales/{{lng}}/{{ns}}.json', // Path for local development
+      // loadPath: isProduction
+      //   ? '/slowbakery/locales/{{lng}}/{{ns}}.json' // Path for GitHub Pages
+      //   : '/locales/{{lng}}/{{ns}}.json', // Path for local development
+      loadPath: '/locales/{{lng}}/{{ns}}.json', // Path for local development
     },
   });
 
