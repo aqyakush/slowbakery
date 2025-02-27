@@ -21,5 +21,7 @@
     "selectFlourType": "Select flour type",
     "selectFillings": "Select fillings (max 3)",
     "addToCart": "Add to Cart",
-    "selectFlour": "Choose your flour type"
+    "selectFlour": "Choose your flour type",
+    "totalPrice": "Total Price",
+    "basePrice": "Base Price"
   }
