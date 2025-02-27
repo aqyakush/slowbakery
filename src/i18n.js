@@ -8,7 +8,7 @@ import Backend from 'i18next-http-backend';
 // for passing in lng and translations on init
 
 // eslint-disable-next-line no-undef
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === 'production';
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)

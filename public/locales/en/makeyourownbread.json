@@ -1,0 +1,25 @@
+{
+    "flourTypes": {
+      "wheat": "Wheat Flour",
+      "rye": "Rye Flour", 
+      "spelt": "Spelt Flour"
+    },
+    "fillings": {
+      "sunflowerSeeds": "Sunflower Seeds",
+      "pumpkinSeeds": "Pumpkin Seeds",
+      "walnuts": "Walnuts",
+      "almonds": "Almonds",
+      "raisins": "Raisins",
+      "cranberries": "Dried Cranberries",
+      "rosemary": "Rosemary",
+      "thyme": "Thyme"
+    },
+    "customBread": {
+      "title": "Custom {{flourType}} Bread",
+      "description": "Custom bread with {{fillings}}"
+    },
+    "selectFlourType": "Select flour type",
+    "selectFillings": "Select fillings (max 3)",
+    "addToCart": "Add to Cart",
+    "selectFlour": "Choose your flour type"
+  }

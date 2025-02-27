@@ -1,0 +1,25 @@
+{
+    "flourTypes": {
+      "wheat": "Vehnäjauho",
+      "rye": "Ruisjauho",
+      "spelt": "Spelttijauho"
+    },
+    "fillings": {
+      "sunflowerSeeds": "Auringonkukansiemenet",
+      "pumpkinSeeds": "Kurpitsansiemenet",
+      "walnuts": "Saksanpähkinät",
+      "almonds": "Mantelit",
+      "raisins": "Rusinat",
+      "cranberries": "Kuivatut karpalot",
+      "rosemary": "Rosmariini",
+      "thyme": "Timjami"
+    },
+    "customBread": {
+      "title": "Räätälöity {{flourType}} leipä",
+      "description": "Räätälöity leipä täytteillä {{fillings}}"
+    },
+    "selectFlourType": "Valitse jauhotyyppi",
+    "selectFillings": "Valitse täytteet (max 3)",
+    "addToCart": "Lisää ostoskoriin",
+    "selectFlour": "Valitse jauhosi"
+  }
