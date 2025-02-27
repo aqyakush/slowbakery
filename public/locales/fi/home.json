@@ -8,5 +8,8 @@
     "preorderButton": "Ennakkotilaa nyt",
     "subscriptionTitle": "Kuukausitilaus",
     "subscriptionDescription": "Liity leipätilaukseemme ja saat tuoreen leivän kotiovellesi joka maanantai. Joka viikko tuo uuden yllätyksen, klassisesta vehnästä maukkaisiin leipiin herkullisilla lisäyksillä. Lisätietoja saat klikkaamalla linkkiä!",
-    "subscriptionButton": "Tutustu tilaukseen"
+    "subscriptionButton": "Tutustu tilaukseen",
+    "makeYourOwnBreadTitle": "Räätälöity Leipä",
+    "makeYourOwnBreadDescription": "Luo täydellinen leipäsi valitsemalla jopa kolme herkullista täytettä! Pähkinöistä ja siemenistä kuivattuihin hedelmiin ja yrtteihin, tee leivästäsi ainutlaatuinen. Jokainen leipä leivotaan tuoreena ja toimitetaan kotiovellesi. Valitse täytteesi ja aloita leipämatkasi tänään!",
+    "makeYourOwnBreadButton": "Luo Oma Leipäsi"
 }

@@ -7,8 +7,8 @@ import HomeCards from "./HomeCards";
 const Home: React.FC = () => {
   return (
     <PageWrapper>
-      <Welcome />
       <HomeCards />
+      <Welcome />
     </PageWrapper>
   )
 }

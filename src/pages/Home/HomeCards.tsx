@@ -68,6 +68,13 @@ const HomeCards: React.FC = () => {
             {t('subscriptionButton')}
           </ResponsiveButton>
         </ResponsiveCard>
+        <ResponsiveCard>
+          <h3>{t('makeYourOwnBreadTitle')}</h3>
+          <p>{t('makeYourOwnBreadDescription')}</p>
+          <ResponsiveButton onClick={() => navigate('/make-your-own-bread')}>
+            {t('makeYourOwnBreadButton')}
+          </ResponsiveButton>
+        </ResponsiveCard>
       </ResponsiveCardWrapper>
     </Section>
   );

@@ -8,5 +8,8 @@
     "preorderButton": "Pre-order Now",
     "subscriptionTitle": "Subscription",
     "subscriptionDescription": "Join our bread subscription and receive a freshly baked loaf at your doorstep every Monday. Each week brings a new surprise, from classic wheat to flavorful loaves with delicious inclusions. For more details, click the link!",
-    "subscriptionButton": "Explore Subscription"
+    "subscriptionButton": "Explore Subscription",
+    "makeYourOwnBreadTitle": "Custom Bread",
+    "makeYourOwnBreadDescription": "Create your perfect custom bread by choosing up to three delicious fillings! From nuts and seeds to dried fruits and herbs, make your bread uniquely yours. Each loaf is freshly baked and delivered to your doorstep. Select your fillings and start your bread journey today!",
+    "makeYourOwnBreadButton": "Create Your Bread"
 }
