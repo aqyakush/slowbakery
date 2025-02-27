@@ -32,6 +32,7 @@ const Navigation: React.FC = () => {
     { to: '/our-story', label: t('ourStory') },
     { to: '/preorder', label: t('preorder') },
     { to: '/subscription', label: t('subscription') },
+    { to: '/make-your-own-bread', label: t('makeYourOwnBread') },
     { to: '/contact', label: t('contact') },
   ];
 

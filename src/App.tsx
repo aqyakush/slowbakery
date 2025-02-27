@@ -11,6 +11,7 @@ import ShoppingCard from './pages/ShoppingCard';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './context/ThemeContext';
+import MakeYourOwnBread from './pages/MakeYouOwnBread';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ const App: React.FC = () => {
                 <Route path="/our-story" element={<OurStory />} />
                 <Route path="*" element={<Home />} />
                 <Route path="/shopping-cart" element={<ShoppingCard />} />
+                <Route path="/make-your-own-bread" element={<MakeYourOwnBread />} />
                 <Route path="/contact" element={<Contact />} />
               </Routes>
             </Main>
