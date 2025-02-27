@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import styled from 'styled-components';
+import PreorderedItemsCard from "../Preorder/PreorderedItemsCard";
 
 type BreadFormData = {
   flourType: string;
@@ -114,7 +115,7 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
 
 const MakeYourOwnBread: React.FC = () => {
   const { t } = useTranslation('makeyourownbread');
-  const { addItem } = useShoppingCart();
+  const { addItem, items } = useShoppingCart();
   const { register, handleSubmit, watch, formState: { errors } } = useForm<BreadFormData>();
 
   const selectedFillings = watch('fillings', []);
@@ -128,14 +129,14 @@ const MakeYourOwnBread: React.FC = () => {
         return total + (filling?.price || 0);
       }, 0);
     }
-    return (BASE_PRICE + fillingsPrice).toFixed(2);
+    return (BASE_PRICE + fillingsPrice);
   };
 
   const onSubmit = (data: BreadFormData) => {
     const customBread = {
       name: `custom-${Date.now()}`,
       title: t('title', { flourType: t(`flourTypes.${data.flourType}`) }),
-      price: 8.99,
+      price: calculateTotalPrice(),
       description: t('makeyourownbread.description', { 
         fillings: data.fillings.map(f => t(`makeyourownbread.fillings.${f}`)).join(', ') 
       }),
@@ -145,50 +146,53 @@ const MakeYourOwnBread: React.FC = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup>
-        <Label>{t('selectFlour')}</Label>
-        <Select {...register('flourType', { required: true })}>
-          <option value="">{t('selectFlourType')}</option>
-          {flourTypes.map(flour => (
-            <option key={flour.id} value={flour.id}>
-              {t(`flourTypes.${flour.id}`)}
-            </option>
-          ))}
-        </Select>
-      </FormGroup>
+    <>
+      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <FormGroup>
+          <Label>{t('selectFlour')}</Label>
+          <Select {...register('flourType', { required: true })}>
+            <option value="">{t('selectFlourType')}</option>
+            {flourTypes.map(flour => (
+              <option key={flour.id} value={flour.id}>
+                {t(`flourTypes.${flour.id}`)}
+              </option>
+            ))}
+          </Select>
+        </FormGroup>
 
-      <FormGroup>
-        <Label>{t('selectFillings')}</Label>
-        <CheckboxGroup>
-          {fillingOptions.map(filling => (
-            <FillingLabel key={filling.id}>
-              <input
-                type="checkbox"
-                value={filling.id}
-                {...register('fillings', { 
-                  validate: value => !value || value.length <= 3 
-                })}
-                disabled={selectedFillings.length >= 3 && !selectedFillings.includes(filling.id)}
-              />
-              <span>{t(`fillings.${filling.id}`)}</span>
-              <PriceTag>+€{filling.price.toFixed(2)}</PriceTag>
-            </FillingLabel>
-          ))}
-        </CheckboxGroup>
-      </FormGroup>
+        <FormGroup>
+          <Label>{t('selectFillings')}</Label>
+          <CheckboxGroup>
+            {fillingOptions.map(filling => (
+              <FillingLabel key={filling.id}>
+                <input
+                  type="checkbox"
+                  value={filling.id}
+                  {...register('fillings', {
+                    validate: value => !value || value.length <= 3
+                  })}
+                  disabled={selectedFillings.length >= 3 && !selectedFillings.includes(filling.id)}
+                />
+                <span>{t(`fillings.${filling.id}`)}</span>
+                <PriceTag>+€{filling.price.toFixed(2)}</PriceTag>
+              </FillingLabel>
+            ))}
+          </CheckboxGroup>
+        </FormGroup>
 
-      {errors.fillings && (
-        <p style={{ color: 'red' }}>{t('maxFillingsError')}</p>
-      )}
+        {errors.fillings && (
+          <p style={{ color: 'red' }}>{t('maxFillingsError')}</p>
+        )}
 
-      <TotalPriceContainer>
-        <TotalPriceLabel>{t('totalPrice')}:</TotalPriceLabel>
-        <TotalPriceAmount>€{calculateTotalPrice()}</TotalPriceAmount>
-      </TotalPriceContainer>
+        <TotalPriceContainer>
+          <TotalPriceLabel>{t('totalPrice')}:</TotalPriceLabel>
+          <TotalPriceAmount>€{calculateTotalPrice()}</TotalPriceAmount>
+        </TotalPriceContainer>
 
-      <SubmitButton type="submit" disabled={!selectedFlourType}>{t('addToCart')}</SubmitButton>
-    </FormContainer>
+        <SubmitButton type="submit" disabled={!selectedFlourType}>{t('addToCart')}</SubmitButton>
+      </FormContainer>
+      {items.length > 0 && <PreorderedItemsCard/>}
+    </>
   );
 };
 
