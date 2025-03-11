@@ -23,5 +23,7 @@
     "addToCart": "Add to Cart",
     "selectFlour": "Choose your flour type",
     "totalPrice": "Total Price",
-    "basePrice": "Base Price"
+    "basePrice": "Base Price",
+    "customBreadFormat": "Custom {{flourType}} bread",
+    "customBreadWithFillings": "Custom {{flourType}} bread with {{fillings}} inclusion"
   }

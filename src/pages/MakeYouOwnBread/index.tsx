@@ -113,9 +113,11 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
   }
 `;
 
+const NAMESPACE = 'makeyourownbread';
+
 const MakeYourOwnBread: React.FC = () => {
-  const { t } = useTranslation('makeyourownbread');
-  const { addItem, items } = useShoppingCart();
+  const { t } = useTranslation(NAMESPACE);
+  const { addItem, items, updateItemQuantity } = useShoppingCart();
   const { register, handleSubmit, watch, formState: { errors } } = useForm<BreadFormData>();
 
   const selectedFillings = watch('fillings', []);
@@ -133,16 +135,30 @@ const MakeYourOwnBread: React.FC = () => {
   };
 
   const onSubmit = (data: BreadFormData) => {
-    const customBread = {
-      name: `custom-${Date.now()}`,
-      title: t('title', { flourType: t(`flourTypes.${data.flourType}`) }),
-      price: calculateTotalPrice(),
-      description: t('makeyourownbread.description', { 
-        fillings: data.fillings.map(f => t(`makeyourownbread.fillings.${f}`)).join(', ') 
-      }),
-      quantity: 1
-    };
-    addItem(customBread);
+    const ids = [
+      { namespace: NAMESPACE, value: `flourTypes.${data.flourType}` },
+      ...data.fillings.map(f => ({ namespace: NAMESPACE, value: `fillings.${f}` }))
+    ];
+    
+    const existingBread = items.find(item => {
+      if (!item.ids || item.ids.length !== ids.length) return false;
+      return ids.every((id, index) => 
+        id.namespace === item.ids[index].namespace && 
+          id.value === item.ids[index].value
+      );
+    });
+    
+    if (existingBread) {
+      updateItemQuantity(existingBread.name, existingBread.quantity + 1);
+    } else {
+      const customBread = {
+        ids,
+        name: `custom-${Date.now()}`,
+        price: calculateTotalPrice(),
+        quantity: 1
+      };
+      addItem(customBread);
+    }
   };
 
   return (

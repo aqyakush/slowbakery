@@ -32,16 +32,19 @@ export type PreorderedItem = {
   quantity: number 
 }
 
+const NAMESPACE = 'preorder';
+
 const Preorder: React.FC = () => {
   const { items, addItem, removeItem } = useShoppingCart();
-  const { t } = useTranslation('preorder');
+  const { t } = useTranslation(NAMESPACE);
 
   const handlePreorder = (name: string, price: number, quantity: number) => {
     const existingItem = items.find((item) => item.name === name);
     if (existingItem) {
       removeItem(name);
     } else {
-      addItem({ name, price, quantity });
+      const ids = [ { namespace: NAMESPACE, value: name} ]
+      addItem({ ids, name, price, quantity });
     }
   };
 

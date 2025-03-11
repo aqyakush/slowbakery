@@ -23,5 +23,7 @@
     "addToCart": "Lisää ostoskoriin",
     "selectFlour": "Valitse jauhosi",
     "totalPrice": "Kokonaishinta",
-    "basePrice": "Perushinta"
+    "basePrice": "Perushinta",
+    "customBreadFormat": "Räätälöity {{flourType}} leipä",
+    "customBreadWithFillings": "Räätälöity {{flourType}} leipä {{fillings}} lisäyksellä"
   }

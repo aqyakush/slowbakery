@@ -113,11 +113,11 @@ const PreorderedItemsCard: React.FC = () => {
   const { t } = useTranslation('preorder');
   const [isVisible, setIsVisible] = useState(true);
   
-  const itemComponents = items.map((item) => {
+  const itemComponents = React.useMemo(() => items.map((item) => {
     return (
       <Item item={item} key={item.name} />
     );
-  });
+  }), [items]);
 
   useEffect(() => {
     setIsVisible(true);

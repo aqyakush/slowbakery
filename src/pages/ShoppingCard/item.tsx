@@ -1,8 +1,9 @@
 import React from 'react';
-import { ShoppingCartItem, useShoppingCart } from '../../context/ShoppingCartContext';
+import { CartItemId, ShoppingCartItem, useShoppingCart } from '../../context/ShoppingCartContext';
 import { styled } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { FaTrash } from 'react-icons/fa';
+import { TFunction } from 'i18next';
 
 const ItemDetails = styled.div`
    display: flex;
@@ -44,9 +45,29 @@ type ItemProps = {
     key: string;
 }
 
+export const createTranslatedString = (t: TFunction, ids: CartItemId[]) => {
+  const flourType = ids[0];
+  const flourTranslation = t(flourType.value, { ns: flourType.namespace });
+  
+  const fillings = ids.slice(1);
+  if (fillings.length === 0) {
+    return flourTranslation;
+  }
+
+  const fillingTranslations = fillings.map(id => 
+    t(id.value, { ns: id.namespace })
+  ).join(', ');
+
+  return t('customBreadWithFillings', { 
+    flourType: flourTranslation,
+    fillings: fillingTranslations,
+    ns: 'makeyourownbread'
+  });
+};
+
 const Item: React.FC<ItemProps> = ({ item }) => {
   const { removeItem, updateItemQuantity } = useShoppingCart();
-  const { t } = useTranslation('preorder');
+  const { t } = useTranslation(['preorder', 'makeyourownbread']);
 
   const handleQuantityChange = (id: string, quantity: number) => {
     if (quantity > 0) {
@@ -54,11 +75,13 @@ const Item: React.FC<ItemProps> = ({ item }) => {
     }
   };
 
+  const name = React.useMemo(() => createTranslatedString(t, item.ids), [item.ids, t]);
+
   const totalPrice = (item.price * item.quantity).toFixed(2);
   return (
     <>
       <ItemDetails>
-        <span>{t(item.name)}</span>
+        <span>{name}</span>
         <QuantityInput
           type="number"
           value={item.quantity}
