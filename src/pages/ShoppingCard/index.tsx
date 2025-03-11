@@ -4,12 +4,12 @@ import { PageWrapper, Title, Content } from '../../components/StyledComponets';
 import { Form, FormSection, Input, Label, SubmitButton } from '../../components/GoogleForm/Form';
 import { HorizontalLine, TotalRow } from '../Preorder/PreorderedItemsCard';
 import styled from 'styled-components';
-import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { ShoppingCartItem, useShoppingCart } from '../../context/ShoppingCartContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ThankyouMessage from '../../components/ThankyouMessage';
 import { onFormSubmit } from '../../components/GoogleForm/utils';
-import Item from './item';
+import Item, { createTranslatedString } from './item';
 
 const StyledLi = styled.li`
   display: flex;
@@ -24,7 +24,7 @@ const StyledLi = styled.li`
 
 type ShoppingCardFormData = {
   email: string;
-  items: { [key: string]: string };
+  items: ShoppingCartItem[];
 }
 
 const ShoppingCard: React.FC = () => {
@@ -40,21 +40,28 @@ const ShoppingCard: React.FC = () => {
     }
   }, [items, navigate]);
 
-  const onSubmit = (data: ShoppingCardFormData) => {
-    const formUrl = 'https://docs.google.com/forms/d/1PfSTT692aHNyLe_F9tPLU8p6c_hE6jaTJhorWyXElQ4/formResponse';
-    let formData: { [key: string]: string } = {
-      'entry.1873621867': data.email
-    };
-    
-    items.forEach((item) => {
-      if (item.name === 'Classic Sourdough') {
-        formData = {...formData, 'entry.382611075': `${item.name} ${item.quantity}pcs`}
-      } else if (item.name === 'Sunflower and Sesame Bread') {
-        formData = {...formData, 'entry.824005279': `${item.name} ${item.quantity}pcs`}
-      } else if (item.name === 'Olive Bread') {
-        formData = {...formData, 'entry.1490827537': `${item.name} ${item.quantity}pcs`}
+  const createOrderString = React.useCallback((items: ShoppingCartItem[]) => {
+    return items.map(item => {
+      if (item.ids) {
+        // For custom breads
+        const translatedName = createTranslatedString(t, item.ids);
+        return `${item.quantity}x ${translatedName}`;
+      } else {
+        // For regular items
+        return `${item.quantity}x ${item.name}`;
       }
-    });
+    }).join(' | ');
+  }, [t]);
+
+  const onSubmit = (data: ShoppingCardFormData) => {
+    const formUrl = 'https://docs.google.com/forms/d/15zKdvvE1dl6ztoKiKzzHRjkphRzpcDhnYm4Du4n-L-4/formResponse'; 
+
+    const orderString = createOrderString(items);
+
+    const formData: { [key: string]: string } = {
+      'entry.660491507': data.email,
+      'entry.227926969': orderString
+    };
 
     onFormSubmit(formData, formUrl)
     clearCart();
@@ -79,11 +86,11 @@ const ShoppingCard: React.FC = () => {
                   return ((
                     <StyledLi key={item.name}>
                       <Item item={item} key={item.name}/>
-                      <Input type="hidden" {...register(`items.${item.name}`)} value={item.name} />
                     </StyledLi>
                   ));
                 })}
               </ul>
+              <Input type="hidden" {...register(`items`)} value={JSON.stringify(items)} />
               <HorizontalLine/>
               <TotalRow>
                 <span>{t('total', { ns: 'preorder' })}:</span>
