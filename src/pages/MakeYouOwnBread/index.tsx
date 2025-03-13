@@ -113,6 +113,53 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
   }
 `;
 
+const FlourTypeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+`;
+
+const FlourTypeCard = styled.label<{ isSelected: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid ${props => props.isSelected ? props.theme.primaryColor : '#ddd'};
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+`;
+
+const FlourImage = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+`;
+
+const FlourName = styled.span`
+  font-size: 1.1rem;
+  font-weight: 500;
+`;
+
+const HiddenRadio = styled.input`
+  position: absolute;
+  opacity: 0;
+`;
+
+const FLOUR_TYPES = [
+  { id: 'wheat', name: 'Wheat Flour', image: 'https://www.thespruceeats.com/thmb/J1_oUODgxQi9Gm6iccam2LNYPpQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-126372385-58950f353df78caebc239b4d.jpg' },
+  { id: 'rye', name: 'Rye Flour', image: 'https://livingskyfarms.ca/cdn/shop/files/Untitleddesign_90.png?v=1691545742' },
+  { id: 'spelt', name: 'Spelt Flour', image: 'https://media.post.rvohealth.io/wp-content/uploads/2020/08/AN344-Spelt-Grain-Flour-732x549-thumb-1.jpg' }
+];
+
 const NAMESPACE = 'makeyourownbread';
 
 const MakeYourOwnBread: React.FC = () => {
@@ -166,14 +213,22 @@ const MakeYourOwnBread: React.FC = () => {
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
           <Label>{t('selectFlour')}</Label>
-          <Select {...register('flourType', { required: true })}>
-            <option value="">{t('selectFlourType')}</option>
-            {flourTypes.map(flour => (
-              <option key={flour.id} value={flour.id}>
-                {t(`flourTypes.${flour.id}`)}
-              </option>
+          <FlourTypeGrid>
+            {FLOUR_TYPES.map(flour => (
+              <FlourTypeCard 
+                key={flour.id}
+                isSelected={selectedFlourType === flour.id}
+              >
+                <HiddenRadio
+                  type="radio"
+                  value={flour.id}
+                  {...register('flourType', { required: true })}
+                />
+                <FlourImage src={flour.image} alt={t(`flourTypes.${flour.id}`)} />
+                <FlourName>{t(`flourTypes.${flour.id}`)}</FlourName>
+              </FlourTypeCard>
             ))}
-          </Select>
+          </FlourTypeGrid>
         </FormGroup>
 
         <FormGroup>
