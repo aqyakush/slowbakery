@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React from "react"
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -12,30 +13,50 @@ type BreadFormData = {
 
 const BASE_PRICE = 5.99;
 
-const flourTypes = [
-  { id: 'wheat' },
-  { id: 'rye' },
-  { id: 'spelt' }
+const fillingOptions = [
+  { id: 'sunflowerSeeds', name: 'Sunflower Seeds', price: 1.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT27NUy-lCwtaox7718sDYgr_itCGYMckM_cQ&s' },
+  { id: 'pumpkinSeeds', name: 'Pumpkin Seeds', price: 1.50, image: 'https://healthwire.pk/wp-content/uploads/2022/04/health-benefits-of-pumpkin-seeds.jpg' },
+  { id: 'walnuts', name: 'Walnuts', price: 2.00, image: 'https://trvcashews.com/shop/wp-content/uploads/2021/05/walnut-1.jpg' },
+  { id: 'almonds', name: 'Almonds', price: 2.00, image: 'https://sweetpotatosoul.com/wp-content/uploads/2024/04/Crunchy-Tamari-Almonds.jpeg' },
+  { id: 'raisins', name: 'Raisins', price: 1.00, image: 'https://media.post.rvohealth.io/wp-content/uploads/2020/09/raisins-732x549-thumbnail-732x549.jpg' },
+  { id: 'cranberries', name: 'Dried Cranberries', price: 1.50, image: 'https://www.meghantelpner.com/wp-content/uploads/2009/04/Homemade-Dried-Cranberries.jpg' },
+  { id: 'rosemary', name: 'Rosemary', price: 0.75, image: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Rosemary-sprig-7d96e10.jpg' },
+  { id: 'thyme', name: 'Thyme', price: 0.75, image: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Thyme-sprig-96aeb6f.jpg' }
 ];
 
-const fillingOptions = [
-  { id: 'sunflowerSeeds', name: 'Sunflower Seeds', price: 1.50 },
-  { id: 'pumpkinSeeds', name: 'Pumpkin Seeds', price: 1.50 },
-  { id: 'walnuts', name: 'Walnuts', price: 2.00 },
-  { id: 'almonds', name: 'Almonds', price: 2.00 },
-  { id: 'raisins', name: 'Raisins', price: 1.00 },
-  { id: 'cranberries', name: 'Dried Cranberries', price: 1.50 },
-  { id: 'rosemary', name: 'Rosemary', price: 0.75 },
-  { id: 'thyme', name: 'Thyme', price: 0.75 }
-];
-  
+
+const PageLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+`;
 
 const FormContainer = styled.form`
-  max-width: 600px;
-  margin: 2rem auto;
+  width: 100%;
+  max-width: 800px;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const AnimationContainer = styled.div<{ isVisible: boolean }>`
+  position: fixed;
+  left: 2rem; 
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: ${props => props.isVisible ? 1 : 0};
+  transition: opacity 0.3s ease;
+  width: 300px;
+
+  img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -46,26 +67,6 @@ const Label = styled.label`
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-`;
-
-const CheckboxGroup = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-`;
-
-const FillingLabel = styled.label`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
 `;
 
 const PriceTag = styled.span`
@@ -160,6 +161,58 @@ const FLOUR_TYPES = [
   { id: 'spelt', name: 'Spelt Flour', image: 'https://media.post.rvohealth.io/wp-content/uploads/2020/08/AN344-Spelt-Grain-Flour-732x549-thumb-1.jpg' }
 ];
 
+const FillingGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+`;
+
+const FillingCard = styled.label<{ isSelected: boolean; disabled?: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid ${props => props.isSelected ? props.theme.primaryColor : '#ddd'};
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  ${props => props.disabled && `
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  `}
+`;
+
+const FillingImage = styled.img`
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+`;
+
+const FillingName = styled.span`
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0.5rem 0;
+`;
+
+const HiddenCheckbox = styled.input`
+  position: absolute;
+  opacity: 0;
+`;
+
 const NAMESPACE = 'makeyourownbread';
 
 const MakeYourOwnBread: React.FC = () => {
@@ -167,7 +220,7 @@ const MakeYourOwnBread: React.FC = () => {
   const { addItem, items, updateItemQuantity } = useShoppingCart();
   const { register, handleSubmit, watch, formState: { errors } } = useForm<BreadFormData>();
 
-  const selectedFillings = watch('fillings', []);
+  const selectedFillings =  watch('fillings') ?? [];
   const selectedFlourType = watch('flourType');
 
   const calculateTotalPrice = () => {
@@ -209,7 +262,13 @@ const MakeYourOwnBread: React.FC = () => {
   };
 
   return (
-    <>
+    <PageLayout>
+      <AnimationContainer isVisible={!!selectedFlourType}>
+            <img 
+              src="/images/mixer.GIF" 
+              alt="Bread making process"
+            />
+      </AnimationContainer>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
           <Label>{t('selectFlour')}</Label>
@@ -229,26 +288,42 @@ const MakeYourOwnBread: React.FC = () => {
               </FlourTypeCard>
             ))}
           </FlourTypeGrid>
+          {errors.flourType && (
+            <p style={{ color: 'red' }}>{t('flourTypeRequired')}</p>
+          )}
         </FormGroup>
 
         <FormGroup>
           <Label>{t('selectFillings')}</Label>
-          <CheckboxGroup>
-            {fillingOptions.map(filling => (
-              <FillingLabel key={filling.id}>
-                <input
-                  type="checkbox"
-                  value={filling.id}
-                  {...register('fillings', {
-                    validate: value => !value || value.length <= 3
-                  })}
-                  disabled={selectedFillings.length >= 3 && !selectedFillings.includes(filling.id)}
-                />
-                <span>{t(`fillings.${filling.id}`)}</span>
-                <PriceTag>+€{filling.price.toFixed(2)}</PriceTag>
-              </FillingLabel>
-            ))}
-          </CheckboxGroup>
+          <FillingGrid>
+            {fillingOptions.map(filling => {
+              const isSelected = Array.isArray(selectedFillings) && selectedFillings.includes(filling.id);
+              const isDisabled = Array.isArray(selectedFillings) && selectedFillings.length >= 3 && !isSelected;
+        
+              return (
+                <FillingCard 
+                  key={filling.id}
+                  isSelected={isSelected}
+                  disabled={isDisabled}
+                >
+                  <HiddenCheckbox
+                    type="checkbox"
+                    value={filling.id}
+                    {...register('fillings', {
+                      validate: value => !value || value.length <= 3
+                    })}
+                    disabled={isDisabled}
+                  />
+                  <FillingImage 
+                    src={filling.image} 
+                    alt={t(`fillings.${filling.id}`)} 
+                  />
+                  <FillingName>{t(`fillings.${filling.id}`)}</FillingName>
+                  <PriceTag>+€{filling.price.toFixed(2)}</PriceTag>
+                </FillingCard>
+              );
+            })}
+          </FillingGrid>
         </FormGroup>
 
         {errors.fillings && (
@@ -263,7 +338,7 @@ const MakeYourOwnBread: React.FC = () => {
         <SubmitButton type="submit" disabled={!selectedFlourType}>{t('addToCart')}</SubmitButton>
       </FormContainer>
       {items.length > 0 && <PreorderedItemsCard/>}
-    </>
+    </PageLayout>
   );
 };
 
