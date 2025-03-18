@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 
 export type CartItemId = {
   namespace: string; 
@@ -18,6 +18,8 @@ type ShoppingCartContextProps = {
   removeItem: (name: string) => void;
   updateItemQuantity: (name: string, quantity: number) => void;
   clearCart: () => void;
+  isShoppingCardVisible: boolean;
+  setIsShoppingCardVisible: (isVisible: boolean) => void;
 }
 
 const ShoppingCartContext = createContext<ShoppingCartContextProps | undefined>(undefined);
@@ -36,6 +38,8 @@ type ShoppingCartProviderProps ={
 
 export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<ShoppingCartItem[]>([]);
+  const [isShoppingCardVisible, setIsShoppingCardVisible] = React.useState(false);
+  const prevItemsLength = useRef(items.length);
 
   const addItem = (item: ShoppingCartItem) => {
     setItems((prevItems) => {
@@ -49,6 +53,13 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
       }
     });
   };
+
+  useEffect(() => {
+    if (items.length != prevItemsLength.current) {
+      setIsShoppingCardVisible(true);
+    }
+    prevItemsLength.current = items.length;
+  }, [items]);
 
   const removeItem = (name: string) => {
     setItems((prevItems) => prevItems.filter((item) => item.name !== name));
@@ -67,7 +78,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
   };
 
   return (
-    <ShoppingCartContext.Provider value={{ items, addItem, removeItem, clearCart, updateItemQuantity }}>
+    <ShoppingCartContext.Provider value={{ items, addItem, removeItem, clearCart, updateItemQuantity, isShoppingCardVisible, setIsShoppingCardVisible }}>
       {children}
     </ShoppingCartContext.Provider>
   );

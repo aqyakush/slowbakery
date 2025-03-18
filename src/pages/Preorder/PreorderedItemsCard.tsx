@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -109,9 +109,8 @@ const ButtonsContainer = styled.div`
 `;
 
 const PreorderedItemsCard: React.FC = () => {
-  const { items } = useShoppingCart();
+  const { items, isShoppingCardVisible, setIsShoppingCardVisible } = useShoppingCart();
   const { t } = useTranslation('preorder');
-  const [isVisible, setIsVisible] = useState(true);
   
   const itemComponents = React.useMemo(() => items.map((item) => {
     return (
@@ -119,11 +118,7 @@ const PreorderedItemsCard: React.FC = () => {
     );
   }), [items]);
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, [items]);
-
-  if (!isVisible) return null;
+  if (!isShoppingCardVisible) return null;
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   return (
@@ -158,7 +153,7 @@ const PreorderedItemsCard: React.FC = () => {
           <ShoppingCardLink to="/shopping-cart">
             {t('goToShoppingCart')}
           </ShoppingCardLink>
-          <TextButton onClick={() => setIsVisible(false)}>
+          <TextButton onClick={() => setIsShoppingCardVisible(false)}>
             {t('continueShopping')}
           </TextButton>
         </ButtonsContainer>
