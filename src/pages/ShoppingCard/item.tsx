@@ -6,7 +6,7 @@ import { FaTrash } from 'react-icons/fa';
 import { TFunction } from 'i18next';
 
 const ItemDetails = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: row; /* Changed to row to align items in a line */
   align-items: center;
   gap: 8px; 
@@ -16,6 +16,9 @@ const ItemActions = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+`;
+
+const ItemName = styled.span`
 `;
 
 const ActionButton = styled.button`
@@ -81,14 +84,14 @@ const Item: React.FC<ItemProps> = ({ item }) => {
   return (
     <>
       <ItemDetails>
-        <span>{name}</span>
+        <ItemName>{name}</ItemName>
+      </ItemDetails>
+      <ItemActions>
         <QuantityInput
           type="number"
           value={item.quantity}
           onChange={(e) => handleQuantityChange(item.name, parseInt(e.target.value))}
         />
-      </ItemDetails>
-      <ItemActions>
         <span>{totalPrice}€</span>
         <RemoveButton onClick={() => removeItem(item.name)}>
           <FaTrash />

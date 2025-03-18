@@ -1,5 +1,7 @@
 import React, { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 
+const CART_STORAGE_KEY = 'shopping-cart';
+
 export type CartItemId = {
   namespace: string; 
   value: string; 
@@ -22,6 +24,15 @@ type ShoppingCartContextProps = {
   setIsShoppingCardVisible: (isVisible: boolean) => void;
 }
 
+const saveToLocalStorage = (items: ShoppingCartItem[]) => {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+};
+
+const loadFromLocalStorage = (): ShoppingCartItem[] => {
+  const items = localStorage.getItem(CART_STORAGE_KEY);
+  return items ? JSON.parse(items) : [];
+};
+
 const ShoppingCartContext = createContext<ShoppingCartContextProps | undefined>(undefined);
 
 export const useShoppingCart = () => {
@@ -37,7 +48,7 @@ type ShoppingCartProviderProps ={
   }
 
 export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ children }) => {
-  const [items, setItems] = useState<ShoppingCartItem[]>([]);
+  const [items, setItems] = useState<ShoppingCartItem[]>(loadFromLocalStorage());
   const [isShoppingCardVisible, setIsShoppingCardVisible] = React.useState(false);
   const prevItemsLength = useRef(items.length);
 
@@ -53,6 +64,10 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
       }
     });
   };
+
+  useEffect(() => {
+    saveToLocalStorage(items);
+  }, [items]);
 
   useEffect(() => {
     if (items.length != prevItemsLength.current) {
