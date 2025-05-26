@@ -1,83 +1,51 @@
 import React from 'react';
-import { Card, CardButton, CardWrapper } from "../../components/Card";
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import HomeCard from './HomeCard';
 
-export const Section = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px;
-
-  @media (max-width: 768px) {
-    padding: 1rem;
+const cards = [
+  {
+    title: 'subscriptionTitle',
+    description: 'subscriptionDescription',
+    buttonText: 'subscriptionButton',
+    imageSrc: 'https://bengbengsourdough.com/cdn/shop/files/Sourdough-Box.jpg',
+    navigationPath: '/subscription',
+    imageRight: false
+  },
+  {
+    title: 'preorderTitle',
+    description: 'preorderDescription',
+    buttonText: 'preorderButton',
+    imageSrc: 'https://www.mandai-design.com/cdn/shop/collections/bakery-shelving-bakery-display-bread-shelf-store-fixtures-mandai-design-8.jpg',
+    navigationPath: '/preorder',
+    imageRight: true
+  },
+  {
+    title: 'makeYourOwnBreadTitle',
+    description: 'makeYourOwnBreadDescription',
+    buttonText: 'makeYourOwnBreadButton',
+    imageSrc: 'https://goldbelly.imgix.net/uploads/showcase_media_asset/image/168467/GratefulBread-CYO-Header.jpg',
+    navigationPath: '/make-your-own-bread',
+    imageRight: false
   }
-`;
-
-const ResponsiveCardWrapper = styled(CardWrapper)`
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-`;
-
-const ResponsiveCard = styled(Card)`
-  @media (max-width: 768px) {
-    width: 85%;
-    margin: 0;
-    padding: 1.5rem;
-
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-  }
-`;
-
-const ResponsiveButton = styled(CardButton)`
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
-`;
-
-const HomeCards: React.FC = () => {
-  const { t } = useTranslation('home');
-  const navigate = useNavigate();
+];
   
+
+
+const HomeCards: React.FC = () => {  
   return (
-    <Section>
-      <ResponsiveCardWrapper>
-        <ResponsiveCard>
-          <h3>{t('preorderTitle')}</h3>
-          <p>{t('preorderDescription')}</p>
-          <ResponsiveButton onClick={() => navigate('/preorder')}>
-            {t('preorderButton')}
-          </ResponsiveButton>
-        </ResponsiveCard>
-        <ResponsiveCard>
-          <h3>{t('subscriptionTitle')}</h3>
-          <p>{t('subscriptionDescription')}</p>
-          <ResponsiveButton onClick={() => navigate('/subscription')}>
-            {t('subscriptionButton')}
-          </ResponsiveButton>
-        </ResponsiveCard>
-        <ResponsiveCard>
-          <h3>{t('makeYourOwnBreadTitle')}</h3>
-          <p>{t('makeYourOwnBreadDescription')}</p>
-          <ResponsiveButton onClick={() => navigate('/make-your-own-bread')}>
-            {t('makeYourOwnBreadButton')}
-          </ResponsiveButton>
-        </ResponsiveCard>
-      </ResponsiveCardWrapper>
-    </Section>
+    <>
+      {cards.map((card, index) => (
+        <HomeCard
+          key={index}
+          title={card.title}
+          description={card.description}
+          buttonText={card.buttonText}
+          imageSrc={card.imageSrc}
+          navigationPath={card.navigationPath}
+          imageRight={card.imageRight}
+        />
+      ))}
+    </>
   );
-};
+}
 
 export default HomeCards;
