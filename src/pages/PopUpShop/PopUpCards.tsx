@@ -12,6 +12,7 @@ const popUpEvents = [
     time: '10:00 AM - 4:00 PM',
     description: 'Join us at the vibrant downtown market for fresh sourdough bread and pastries.',
     imageSrc: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1000&auto=format&fit=crop',
+    disabled: false,
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const popUpEvents = [
     time: '8:00 AM - 2:00 PM',
     description: 'Experience our artisanal bread selection at the local farmers market.',
     imageSrc: 'https://images.unsplash.com/photo-1556471013-0001958d2f12?q=80&w=1000&auto=format&fit=crop',
+    disabled: true,
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const popUpEvents = [
     time: '11:00 AM - 6:00 PM',
     description: 'Special bread varieties and demonstrations at the annual food festival.',
     imageSrc: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1000&auto=format&fit=crop',
+    disabled: false,
   }
 ];
 

@@ -1,0 +1,25 @@
+{
+  "market-sourdough": {
+    "title": "Markkinoiden Erikoisleipä",
+    "description": "Meidän erikoisleipämme markkinapäivän twistillä",
+    "ingredients": "Luomujauho, vesi, suola, tuoreet yrtit"
+  },
+  "market-croissant": {
+    "title": "Artesaanikroissantit",
+    "description": "Rapeat, voipohjaiset kroissantit tuoreena markkinoille",
+    "ingredients": "Luomujauho, ranskalainen voi, maito, munat"
+  },
+  "farmers-rye": {
+    "title": "Maatilatorin Ruisleipä",
+    "description": "Täyteläinen ja maukas ruisleipä, täydellinen maatilatorille",
+    "ingredients": "Luomuruisjauho, vesi, suola, kumina"
+  },
+  "farmers-focaccia": {
+    "title": "Yrttifocaccia",
+    "description": "Focaccia tuoreilla paikallisilla yrteillä",
+    "ingredients": "Luomujauho, oliiviöljy, tuoreet yrtit, merisuola"
+  },
+  "addToOrder": "Lisää tilaukseen",
+  "removeFromOrder": "Poista tilauksesta",
+  "available": "Saatavilla"
+} 

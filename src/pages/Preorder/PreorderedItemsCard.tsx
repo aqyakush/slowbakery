@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
-import Item from '../ShoppingCard/item';
+import ItemGroup from '../ShoppingCard/ItemGroup';
 
 const PreorderedCardWrapper = styled(motion.div)`
   position: fixed;
@@ -112,12 +112,6 @@ const PreorderedItemsCard: React.FC = () => {
   const { items, isShoppingCardVisible, setIsShoppingCardVisible } = useShoppingCart();
   const { t } = useTranslation('preorder');
   
-  const itemComponents = React.useMemo(() => items.map((item) => {
-    return (
-      <Item item={item} key={item.name} />
-    );
-  }), [items]);
-
   if (!isShoppingCardVisible) return null;
 
   const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
@@ -126,24 +120,12 @@ const PreorderedItemsCard: React.FC = () => {
       <PreorderedCardWrapper
         initial={{ x: '100%' }}
         animate={{ x: 0 }}
-        transition={{ type: 'spring', duration: 1, bounce: 0.5
-        }}
+        transition={{ type: 'spring', duration: 1, bounce: 0.5 }}
         layout
       >
         <PreorderedTitle>{t('preorderedItemsTitle')}</PreorderedTitle>
         <HorizontalLine />
-        {itemComponents.map((item, index) => (
-          <PreorderedItemP
-            key={index}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.5 }}
-            layout
-          >
-            {item}
-          </PreorderedItemP>
-        ))}
+        <ItemGroup items={items} />
         <HorizontalLine />
         <TotalRow>
           <span>{t('total')}:</span>

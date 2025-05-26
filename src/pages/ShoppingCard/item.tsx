@@ -1,76 +1,71 @@
 import React from 'react';
-import { CartItemId, ShoppingCartItem, useShoppingCart } from '../../context/ShoppingCartContext';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { ShoppingCartItem, useShoppingCart } from '../../context/ShoppingCartContext';
 import { FaTrash } from 'react-icons/fa';
-import { TFunction } from 'i18next';
 
 const ItemDetails = styled.div`
   display: flex;
-  flex-direction: row; /* Changed to row to align items in a line */
-  align-items: center;
-  gap: 8px; 
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+const ItemName = styled.span`
+  font-weight: 500;
+  color: ${props => props.theme.textColor};
 `;
 
 const ItemActions = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-`;
-
-const ItemName = styled.span`
-`;
-
-const ActionButton = styled.button`
-  background-color: ${(props) => props.theme.removeItem};
-  color: ${(props) => props.theme.textColor};
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 4px 8px;
-`;
-
-const RemoveButton = styled(ActionButton)`
-  color: ${(props) => props.theme.removeItem};;
-  background-color: white
+  gap: 1rem;
 `;
 
 const QuantityInput = styled.input`
   width: 50px;
-  padding: 5px;
-  margin-right: 10px;
-  font-size: 1rem;
+  padding: 0.25rem;
   text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 `;
 
-type ItemProps = {
-    item: ShoppingCartItem;
-    key: string;
+const RemoveButton = styled.button`
+  background: none;
+  border: none;
+  color: ${props => props.theme.removeItem};
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+interface ItemProps {
+  item: ShoppingCartItem;
 }
 
-export const createTranslatedString = (t: TFunction, ids: CartItemId[]) => {
-  const flourType = ids[0];
-  const flourTranslation = t(flourType.value, { ns: flourType.namespace });
-  
-  const fillings = ids.slice(1);
-  if (fillings.length === 0) {
-    return flourTranslation;
-  }
+interface TranslationId {
+  namespace: string;
+  value: string;
+}
 
-  const fillingTranslations = fillings.map(id => 
-    t(id.value, { ns: id.namespace })
-  ).join(', ');
+export const createTranslatedString = (t: any, ids?: TranslationId[]) => {
+  if (!ids || ids.length === 0) return '';
 
-  return t('customBreadWithFillings', { 
-    flourType: flourTranslation,
-    fillings: fillingTranslations,
-    ns: 'makeyourownbread'
-  });
+  return ids.map(id => {
+    if (id.namespace === 'popup') return '';
+    if (id.namespace === 'event') return '';
+    return t(id.value, { ns: id.namespace });
+  }).filter(Boolean).join(' + ');
 };
 
 const Item: React.FC<ItemProps> = ({ item }) => {
   const { removeItem, updateItemQuantity } = useShoppingCart();
-  const { t } = useTranslation(['preorder', 'makeyourownbread']);
+  const { t } = useTranslation(['preorder', 'makeyourownbread', 'popup']);
 
   const handleQuantityChange = (id: string, quantity: number) => {
     if (quantity > 0) {
@@ -78,13 +73,12 @@ const Item: React.FC<ItemProps> = ({ item }) => {
     }
   };
 
-  const name = React.useMemo(() => createTranslatedString(t, item.ids), [item.ids, t]);
+  const displayName = item.metadata?.itemTitle || createTranslatedString(t, item.ids);
 
-  const totalPrice = (item.price * item.quantity).toFixed(2);
   return (
     <>
       <ItemDetails>
-        <ItemName>{name}</ItemName>
+        <ItemName>{displayName}</ItemName>
       </ItemDetails>
       <ItemActions>
         <QuantityInput
@@ -92,7 +86,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
           value={item.quantity}
           onChange={(e) => handleQuantityChange(item.name, parseInt(e.target.value))}
         />
-        <span>{totalPrice}€</span>
+        <span>€{(item.price * item.quantity).toFixed(2)}</span>
         <RemoveButton onClick={() => removeItem(item.name)}>
           <FaTrash />
         </RemoveButton>
@@ -100,6 +94,5 @@ const Item: React.FC<ItemProps> = ({ item }) => {
     </>
   );
 };
-
 
 export default Item;

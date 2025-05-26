@@ -1,0 +1,25 @@
+{
+  "market-sourdough": {
+    "title": "Market Special Sourdough",
+    "description": "Our signature sourdough with a market-day twist",
+    "ingredients": "Organic flour, water, salt, market-fresh herbs"
+  },
+  "market-croissant": {
+    "title": "Artisanal Croissants",
+    "description": "Flaky, buttery croissants made fresh for the market",
+    "ingredients": "Organic flour, French butter, milk, eggs"
+  },
+  "farmers-rye": {
+    "title": "Farmers Market Rye",
+    "description": "Dense and flavorful rye bread perfect for the farmers market",
+    "ingredients": "Organic rye flour, water, salt, caraway seeds"
+  },
+  "farmers-focaccia": {
+    "title": "Garden Herb Focaccia",
+    "description": "Focaccia topped with fresh herbs from local farmers",
+    "ingredients": "Organic flour, olive oil, fresh herbs, sea salt"
+  },
+  "addToOrder": "Add to Order",
+  "removeFromOrder": "Remove from Order",
+  "available": "Available"
+} 
