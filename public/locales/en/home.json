@@ -1,7 +1,7 @@
 {
     "homeTitle": "Slow Bakery From Helsinki",
     "homeDescription1": "At Slow Bakery, we bake sourdough with love, patience, and attention to detail. Every loaf is handcrafted using traditional methods, high-quality ingredients, and plenty of care to bring out the best flavors and textures.",
-    "homeDescription2": "Based in Helsinki, we take pride in sharing our passion for real bread with our community. Whether you’re looking for a classic wheat loaf or something with unique inclusions, we invite you to experience the joy of freshly baked sourdough.",
+    "homeDescription2": "Based in Helsinki, we take pride in sharing our passion for real bread with our community. Whether you're looking for a classic wheat loaf or something with unique inclusions, we invite you to experience the joy of freshly baked sourdough.",
     "homeDescription3": "Come taste the difference—baked for you, with love.",
     "preorderTitle": "Pre-order",
     "preorderDescription": "Pre-order your favorite bread from our curated selection. Orders are placed before baking to ensure freshness, prevent overproduction, and reduce waste. Click the link to place your pre-order!",
@@ -11,5 +11,8 @@
     "subscriptionButton": "Explore Subscription",
     "makeYourOwnBreadTitle": "Custom Bread",
     "makeYourOwnBreadDescription": "Create your perfect custom bread by choosing up to three delicious fillings! From nuts and seeds to dried fruits and herbs, make your bread uniquely yours. Each loaf is freshly baked and delivered to your doorstep. Select your fillings and start your bread journey today!",
-    "makeYourOwnBreadButton": "Create Your Bread"
+    "makeYourOwnBreadButton": "Create Your Bread",
+    "popUpShopTitle": "Pop-up Bakery",
+    "popUpShopDescription": "Find us at various locations in Helsinki! Come taste our fresh breads and pastries at our pop-up events. Check out upcoming events and come say hello!",
+    "popUpShopButton": "View Events"
 }

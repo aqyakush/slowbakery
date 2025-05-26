@@ -25,6 +25,14 @@ const cards = [
     imageSrc: 'https://goldbelly.imgix.net/uploads/showcase_media_asset/image/168467/GratefulBread-CYO-Header.jpg',
     navigationPath: '/make-your-own-bread',
     imageRight: false
+  },
+  {
+    title: 'popUpShopTitle',
+    description: 'popUpShopDescription',
+    buttonText: 'popUpShopButton',
+    imageSrc: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1000&auto=format&fit=crop',
+    navigationPath: '/pop-up-shop',
+    imageRight: true
   }
 ];
   

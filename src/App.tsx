@@ -14,6 +14,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import MakeYourOwnBread from './pages/MakeYouOwnBread';
 import Blog from './pages/Blog';
 import ArticlePage from './pages/Blog/ArticlePage';
+import PopUpShop from './pages/PopUpShop';
+import PopUpDetails from './pages/PopUpShop/PopUpDetails';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -45,6 +47,8 @@ const App: React.FC = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<ArticlePage />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/pop-up-shop" element={<PopUpShop />} />
+                <Route path="/pop-up-shop/:id" element={<PopUpDetails />} />
               </Routes>
             </Main>
             <Footer />

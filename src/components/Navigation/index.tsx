@@ -30,6 +30,7 @@ const Navigation: React.FC = () => {
 
   const menuItems = [
     { to: '/our-story', label: t('ourStory') },
+    // { to: '/pop-up-shop', label: t('popUpShop') },
     { to: '/preorder', label: t('preorder') },
     { to: '/subscription', label: t('subscription') },
     { to: '/make-your-own-bread', label: t('makeYourOwnBread') },

@@ -1,7 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { styled } from 'styled-components';
-import { Section } from './HomeCards';
+
+
+
+
+export const Section = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
 
 const ResponsiveSection = styled(Section)`
   @media (max-width: 768px) {
